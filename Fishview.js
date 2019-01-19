@@ -38,7 +38,7 @@ class Fishview {
       }
     for(let i=0; i<hand.length; i++){
         let image=document.createElement("img");
-	   image.src ="./images/cardback.jpg";
+	   image.src ="./Images/cardback.jpg";
 	   image.class="card positionable";
 	   image.style="left: "+  (15*i) + " px; z-index:" + i +" hieght:10px";
 	   cpu.appendChild(image);
@@ -52,7 +52,7 @@ class Fishview {
       }
      for(let i=0; i<hand.length; i++){
          let image=document.createElement("img");
-	 image.src ="./images/"+hand[i].toString()+".png";
+	 image.src ="./Images/"+hand[i].toString()+".png";
 	 image.title=hand[i].toString();
 	 image.class="card positionable";
 	 image.style="left: "+  (15*i) + " px; z-index:" + i +"";

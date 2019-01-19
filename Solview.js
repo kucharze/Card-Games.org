@@ -30,14 +30,14 @@ class Solview {
         for(var i=0; i<row.length; i++){
             if(!row[i].flipped){
                 let image=document.createElement("img");
-                image.src ="./images/"+row[i].toString()+".png";
+                image.src ="./Images/"+row[i].toString()+".png";
 	            image.title=row[i].toString();
 	            image.class="card positionable";
                 image.style="left: "+ (15*i) + " px; z-index:" + i +"";
                 card.appendChild(image);
             }else{
                 let image=document.createElement("img");
-                image.src ="./images/cardback.png";
+                image.src ="./Images/cardback.png";
 	            image.title=row[i].toString();
 	            image.class="card positionable";
                 image.style="left: "+ (15*i) + " px; z-index:" + i +"";
