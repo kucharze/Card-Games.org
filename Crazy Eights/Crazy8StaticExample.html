@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head> 
+    <meta charset="UTF-8">
+    <title>
+      Crazy Eights
+    </title> 
+    <link rel="stylesheet" type="text/css" href="Crazy8.css">
+  </head> 
+  <body>
+    <!-- Computer's hand -->
+    <div id="myHand" class="hand"><img src="../images/PlayingCards/back.png" title="4s" class="card positionable" style="left: 0px; z-index: 1;"><img src="../images/PlayingCards/back.png" title="ks" class="card positionable" style="left: 15px; z-index: 2;"><img src="../images/PlayingCards/back.png" title="kc" class="card positionable" style="left: 30px; z-index: 3;"><img src="../images/PlayingCards/back.png" title="8h" class="card positionable" style="left: 45px; z-index: 4;"><img src="../images/PlayingCards/back.png" title="3d" class="card positionable" style="left: 60px; z-index: 5;"><img src="../images/PlayingCards/back.png" title="2h" class="card positionable" style="left: 75px; z-index: 6;"><img src="../images/PlayingCards/back.png" title="js" class="card positionable" style="left: 90px; z-index: 7;"></div>
+
+    <!-- "table" is div holding deck and discard pile images.
+         Initially show card back for pile (replaced by program). -->
+    <div id="table"><img id="deck" src="../images/PlayingCards/back.png" alt="Deck: click to pick a card." class="card clickable"><img id="pile" src="../images/PlayingCards/6d.png" alt="Discard pile top." class="card"></div>
+
+    <!-- User's hand -->
+    <div id="yourHand" class="hand"><img src="../images/PlayingCards/qs.png" title="qs" class="card positionable clickable" style="left: 0px; z-index: 1;"><img src="../images/PlayingCards/9d.png" title="9d" class="card positionable clickable" style="left: 15px; z-index: 2;"><img src="../images/PlayingCards/ac.png" title="ac" class="card positionable clickable" style="left: 30px; z-index: 3;"><img src="../images/PlayingCards/7c.png" title="7c" class="card positionable clickable" style="left: 45px; z-index: 4;"><img src="../images/PlayingCards/3s.png" title="3s" class="card positionable clickable" style="left: 60px; z-index: 5;"><img src="../images/PlayingCards/8c.png" title="8c" class="card positionable clickable" style="left: 75px; z-index: 6;"><img src="../images/PlayingCards/5s.png" title="5s" class="card positionable clickable" style="left: 90px; z-index: 7;"></div>
+  </body>
+</html>
