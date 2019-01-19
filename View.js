@@ -76,7 +76,7 @@ class View {
 	 let pile = document.getElementById("pile")
      this.topCard=card;
 	 let image=document.createElement("img");
-	 image.src ="./images/"+card.toString()+".png";
+	 image.src ="./Images/"+card.toString()+".png";
 	 image.id="pile";
 	 image.title=this.topCard.getValue()+this.topCard.getSuit();
 	 image.class="card positionable";
