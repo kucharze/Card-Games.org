@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<!--This project contains code from the following sources
+Previous assignments done in class
+https://www.w3schools.com/howto/howto_js_tabs.asp
+https://blog.liveedu.tv/javascript-select-value/
+https://stackoverflow.com/questions/14496531/adding-two-numbers-concatenates-them-instead-of-calculating-the-sum
+https://stackoverflow.com/questions/6341774/keep-track-of-how-much-time-is-spent-showing-certain-elements-on-the-page
+https://marina-ferreira.github.io/projects/js/memory-game/
+-->
+<html>
+<head>
+    <title>CardGames.org</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+    background-color: aqua;
+    font-family: Arial;
+    }
+div.statusBox {
+    border: 1px solid black;
+    padding: 3px 0px;
+    margin: 3px 0px;
+    font-size: 30pt;
+    color: darkgreen;
+    text-align: center;
+}
+    
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 20px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+</style>
+    <link rel="stylesheet" href="styles-g1.css">
+    <link rel="stylesheet" type="text/css" href="Crazy8.css" />
+</head>
+<body>
+<div id="Title" class="statusBox">Welcome to Card games.org</div>
+    <label>Active User:</label>
+    <label id="User">The user</label>
+<center><p>Choose your game.</p></center>
+
+<div class="tab">
+    <button class="tablinks" onclick="openCity(event, 'Account')">Create an account</button>
+    <button class="tablinks" onclick="openCity(event, 'Login')">Login</button>
+    <button class="tablinks" onclick="openCity(event, 'Eight')">Crazy Eights</button>
+    <button class="tablinks" onclick="openCity(event, 'Snap')">Snip Snap Snorum</button>
+    <button class="tablinks" onclick="openCity(event, 'Jack')">Blackjack</button>
+    <button class="tablinks" onclick="openCity(event, 'Match')">Matching</button>
+    <button class="tablinks" onclick="openCity(event, 'gofish')">Go fish</button>
+    <button class="tablinks" onclick="openCity(event, 'solitare')">Solitare</button>
+    <button class="tablinks" onclick="openCity(event, 'War')">War</button>
+    <button class="tablinks" onclick="openCity(event, 'sugestions')">Suggestions</button>
+    <button class="tablinks" onclick="openCity(event, 'boards')">Leaderboards</button>
+    <button class="tablinks" onclick="openCity(event, 'instructions')">Game Instructions</button>
+        </div>
+
+<div id="Account" class="tabcontent">
+    <label id="data">Information</label>
+        <h1>Card Games Login</h1>
+        <h2>Create a Login</h2>
+        <h3>Username</h3>
+        <textarea id="user"></textarea>
+        <h3>Password</h3>
+        <textarea id="pass"></textarea><br>
+        <p>You must have a password of at least 8 characters</p>
+        <input type="button" onclick=insert() value="Create an account">
+</div>
+    
+    <div id="Login" class="tabcontent">
+        <h2>Already have a login? Sign in here</h2>
+        <form>
+            <h3>Username</h3>
+            <input type="text" id="username" name="User">
+            <h3>Password</h3>
+            <input type="password" id="password" name="Pass">
+            <input type="submit" value="Login">
+        </form>
+</div>
+
+<div id="Eight" class="tabcontent">
+        <!-- Status area -->
+    <div id="status" class="statusBox">Welcome to Crazy Eights</div>
+    <!-- Computer's hand -->
+    <div id="myHand" class="hand"></div>
+
+    <!-- "table" is div holding deck and discard pile images.
+         Initially show card back for pile (replaced by program). -->
+    <div id="table"><img id="deck"
+      src="./Images/cardback.jpg" 
+      alt="Deck: click to pick a card."
+      class="card clickable"/>
+        <img id="pile"
+      src="./cardback.jpg" 
+      alt="Discard pile top."
+      class="card"/></div>
+
+    <!-- User's hand -->
+    <div id="yourHand" class="hand"></div>
+    <!-- 
+	 The suit-picker popup displayed when the user plays an 8.
+         Initially not visible.
+      -->
+    <div id="suitPicker">
+      Pick a suit:
+      <div id="suitImages">
+	<span id="c" class="clickable">&clubs;</span>
+	<span id="d" class="clickable">&diams;</span>
+	<span id="h" class="clickable">&hearts;</span>
+	<span id="s" class="clickable">&spades;</span>
+      </div>
+    </div>
+    
+    <br><br>
+    <label id="reset">Click here to reset the game</label>
+    
+  <!--  <script src="test.js"></script>
+    <!-- Load the model classes. -->
+    <script src="Card.js"></script>
+    <script src="Deck.js"></script>
+    <script src="Pile.js"></script>
+    <script src="Player.js"></script>
+
+    <!-- Load the view class. -->
+    <script src="View.js"></script>
+
+    <!-- Load the presenter classes. -->
+    <script src="ComputerPlayer.js"></script>
+    <script src="HumanPlayer.js"></script>
+    <script src="Presenter.js"></script>
+
+    <!-- Run the program. -->
+    <script>
+    "use strict";
+        //Play one round of Crazy Eights against the computer
+        var presenter = new Presenter();
+        presenter.play();
+        //presenter.solplay();</script>
+</div>
+    
+    <div id="Jack" class="tabcontent">
+        <div id="jackstatus" class="statusBox">Welcome to Blackjack</div>
+        <div id="dealerhand"><img src="Images/cardback.jpg"></div>
+        <div id="JDeck"><img src="Images/cardback.jpg"></div>
+        <div id="playerhand"><img src="Images/cardback.jpg"></div>
+        <input type="button" value="Stand" onclick=stand() style="font-size: 18px">
+        <br><br>
+        <label id="jackreset">Click here to reset the game</label>
+        <script src="Jackplayer.js"></script>
+        <script src="Jackpres.js"></script>
+        <script src="Jackview.js"></script>
+        <script>
+            let jack=new Jackpres();
+            jack.play();
+            
+            function stand(){
+                jack.stand();
+            }
+        </script>
+    </div>
+    
+    <div id="Snap" class="tabcontent">
+        <div id="jackstatus" class="statusBox">Welcome to Snip Snap Snorum</div>
+        <div id="cpuhand"><img src="Images/cardback.jpg"></div>
+        <div id="table"><img src="Images/cardback.jpg"></div>
+        <div id="userhand"><img src="Images/cardback.jpg" title="start card"></div>
+        <br> <br>
+        <label style="font-size: 20px" id="fishreset">Click here to reset the game</label>
+        <br><br>
+        <script>
+            //let jack=new Jackpres();
+            //jack.play();
+            
+        </script>
+    </div>
+
+<div id="Match" class="tabcontent">
+    <div id="matchstatus" class="statusBox">Welcome to Memory Matcher</div>
+        <label class="moves">You finished the game with this many moves: Number of moves will go here</label><br>
+        <label class="mem">Try to match the cards in as little turns as possible</label><br>
+        <label id="memreset">Click here to reset the game</label>
+     <section class="memory-game">
+    <div class="memory-card" data-framework="apple1">
+      <img class="front-face" src="cards/apple1.PNG" alt="card"  />
+      <img class="back-face" src="Images/cardback.png" alt="bluefront" />
+    </div>
+    <div class="memory-card" data-framework="apple1">
+      <img class="front-face" src="cards/apple1.PNG" alt="card" />
+      <img class="back-face" src="Images/cardback.png" alt="bluefront" />
+    </div>
+
+    <div class="memory-card" data-framework="butterfly1">
+      <img class="front-face" src="cards/butterfly1.PNG" alt="card" />
+      <img class="back-face" src="Images/cardback.png" alt="bluefront" />
+    </div>
+    <div class="memory-card" data-framework="butterfly1">
+      <img class="front-face" src="cards/butterfly1.PNG" alt="card" />
+      <img class="back-face" src="Images/cardback.png" alt="bluefront" />
+    </div>
+
+    <div class="memory-card" data-framework="cow1">
+     <img class="front-face" src="cards/cow1.PNG" alt="card" />
+      <img class="back-face" src="Images/cardback.png" alt="bluefront" />
+    </div>
+    <div class="memory-card" data-framework="cow1">
+          <img class="front-face" src="cards/cow1.PNG" alt="card" />
+      <img class="back-face" src="Images/cardback.png" alt="bluefront" />
+    </div>
+
+    <div class="memory-card" data-framework="dog1">
+        <img class="front-face" src="cards/dog1.PNG" alt="card" />
+      <img class="back-face" src="Images/cardback.png" alt="bluefront" />
+    </div>
+    <div class="memory-card" data-framework="dog1">
+         <img class="front-face" src="cards/dog1.PNG" alt="card" />
+      <img class="back-face" src="Images/cardback.png" alt="bluefront" />
+    </div>
+
+    <div class="memory-card" data-framework="flower">
+           <img class="front-face" src="cards/flower.PNG" alt="card" />
+     <img class="back-face" src="Images/cardback.png" alt="bluefront" />
+    </div>
+    <div class="memory-card" data-framework="flower">
+         <img class="front-face" src="cards/flower.PNG" alt="card" />
+     <img class="back-face" src="Images/cardback.png" alt="bluefront" />
+    </div>
+
+    <div class="memory-card" data-framework="heart1">
+       <img class="front-face" src="cards/heart1.PNG" alt="card" />
+     <img class="back-face" src="Images/cardback.png" alt="bluefront" />
+    </div>
+    <div class="memory-card" data-framework="heart1">
+      <img class="front-face" src="cards/heart1.PNG" alt="card" />
+     <img class="back-face" src="Images/cardback.png" alt="bluefront" />
+	 </div>
+
+	     <div class="memory-card" data-framework="hand1">
+       <img class="front-face" src="cards/hand1.PNG" alt="card" />
+     <img class="back-face" src="Images/cardback.png" alt="bluefront" />
+    </div>
+    <div class="memory-card" data-framework="hand1">
+      <img class="front-face" src="cards/hand1.PNG" alt="card" />
+     <img class="back-face" src="Images/cardback.png" alt="bluefront" />
+	 </div>
+
+	 <div class="memory-card" data-framework="lightbulb1">
+       <img class="front-face" src="cards/lightbulb1.PNG" alt="card" />
+     <img class="back-face" src="Images/cardback.png" alt="bluefront" />
+    </div>
+     <div class="memory-card" data-framework="lightbulb1">
+       <img class="front-face" src="cards/lightbulb1.PNG" alt="card" />
+     <img class="back-face" src="Images/cardback.png" alt="bluefront" />
+	 </div>
+	</section>
+  <script src="scripts-g1.js"></script>
+</div>
+    
+    <div id="gofish" class="tabcontent">
+        <div id="status" class="statusBox">Welcome to Go Fish</div>
+        <div id="cpuhand"><img src="Images/cardback.jpg"></div>
+        <div id="table"><img src="Images/cardback.jpg"><img src="Images/cardback.jpg"></div>
+        <div id="fuserhand"><img src="Images/cardback.jpg" title="start card"></div>
+        <br> <br>
+        <label style="font-size: 20px" id="fishreset">Click here to reset the game</label>
+        <script src="Fishpres.js"></script>
+        <script src="Fishview.js"></script>
+        <script>
+            'use strict'
+            var fpres=new Fishpres();
+            fpres.play();
+        </script>
+    </div>
+    
+    <div id="solitare" class="tabcontent">
+        <div id="status" class="statusBox">Welcome to Solitare</div>
+        <div id="row1" class="row1"><img src="Images/cardback.jpg"></div>
+        <div id="row2"><img src="Images/cardback.jpg"></div>
+        <div id="row3"><img src="Images/cardback.jpg"></div>
+        <div id="row4"><img src="Images/cardback.jpg"></div>
+        <div id="row5"><img src="Images/cardback.jpg"></div>
+        <div id="soldecks"><img src="Images/cardback.png"><img src="Images/cardback.png"><img src="Images/cardback.png"><img src="Images/cardback.png"></div>
+        <br>
+        <label id="solreset" style="font-size: 25px">Click here to reset the game</label>
+        <script src="Solpres.js"></script>
+        <script src="Solview.js"></script>
+    <script>
+    "use strict";
+        //Play one round of Solitare
+        var spres = new Solpres();
+        spres.play();
+        </script>
+    </div>
+
+<div id="War" class="tabcontent">
+  <div id="status" class="statusBox">Welcome to War</div>
+    <div id="mydeck"><img src="Images/cardback.png" alt="Com deck"></div>
+    <div id="mywar"></div>
+    <div id="mycard"></div>
+    <div id="yourcard"></div>
+    <div id="yourwar"></div>
+    <div style="top: 1000px" id="yourdeck"><img src="Images/cardback.png" alt="playerdeck"></div>
+    <br>
+    <label id="warreset">Click here to reset the game</label>
+</div>
+    
+<div id="sugestions" class="tabcontent">
+    <label id="suggestion">Suggestion list:<br></label>
+  <h1 style="font-size: 40px">Suggestions</h1>
+  <p>Have any ideas or complaints about our website.<br>
+    You may submit them down below.</p>.
+    
+    <textarea id="sug"></textarea><br>
+    
+    <input type="button" onclick=suggest() value="Submit" font-size="25px">
+</div>
+    
+<div id="boards" class="tabcontent">
+  <h3>Leaderbaords</h3>
+  <p>Use the controls below to view each of the leaderboards.</p>.
+    <select id="leaderboards" name="Leaderboards">
+        <option value="none">Select a leaderboard</option>
+        <option>Crazy Eights</option>
+        <option>Matching</option>
+        <option>Go Fish</option>
+        <option>Solitare</option>
+        <option>War</option>
+    </select>
+    
+    <input type="button" onclick=load() value="Load Leaderboard" font-size="20px" ><br>
+    <p id="board">This is the spot where the leaderboards will appear<br>
+    when the button is clicked with a value selected<br></p>
+</div>
+    
+    <div id="instructions" class="tabcontent">
+        <h1>Unsure how to play a certain game, check the rules here</h1>
+        <h2>Crazy Eights</h2>
+        <p>Both players will recieve a opening hand of seven cards.<br>
+        There is a card face up on the pile.<br>
+        Your job is to put a new card on the pile that is either of the same suit, or value, as the card that is
+        on the top of the pile.<br>
+        An eight will act as a wildcard.  Eights can be put down at
+        any time, and can change the active suit to any suit you want.<br>
+        The first player that gets rid of all of the cards in their hand wins.</p>
+        <h2>Blackjack</h2>
+        <p>You and the dealer will recieve two cards.  You want to add up the values on each of the cards<br>
+        Kings, jacks, and queens all have a value of 10.<br>
+        An ace can have a value of either 1 or 11.<br>
+        You cannot go over 21 or you will bust.<br>
+        At the end of the round, add up the value of each players cards<br>
+        The player with the higher valued hand wins</p>
+        <h2>Matching</h2>
+        <p>Flip over two cards.<br>
+        If they have the same image on them keep them flipped over.<br>
+        Otherwise flip them back.<br>
+        Flip over all cards to win.</p>
+        <h2>Go Fish</h2>
+        <p>Start with 7 cards<br>
+        Ask your opponent if they have a card with a matching value as one of yours in their hand<br>
+        If they do, you both put those cards into the pile.<br>
+        If not draw a card.<br>
+        The first player to get rid of all the cards in their hand wins</p>
+        <h2>Solitare</h2>
+        <p>Solitare</p>
+        <h2>War</h2>
+        <p>Both players take a card from there deck and put it down.<br>
+        The player with the higer valued card takes both cards.<br>
+        If the values are tied, put out a card face down and face up.<br>
+        Flip the face down card over. The owner of the higher valued card wins all cards.</p>
+</div>
+    
+<script>
+function openCity(evt, cityName) {//Code for opening tabs
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+    evt.currentTarget.className += " active";
+}
+</script>
+        <script>
+        function insert(){
+            var user = document.getElementById("user").value;
+            var pass = document.getElementById("pass").value;
+            var table=document.getElementById("data");
+            if(pass.length<8){
+                alert("Password must be at least 8 characters long");
+                document.getElementById("user").value=" ";
+                document.getElementById("pass").value=" ";
+                return;
+            }
+            table.innerHTML=table.innerHTML+"Username:"+user+" Password:"+pass;
+            document.getElementById("user").value=" ";
+            document.getElementById("pass").value=" ";
+        }
+            
+        function suggest(){
+            var user = document.getElementById("sug").value;
+            var table=document.getElementById("suggestion");
+           // if(pass.length<8){
+                //alert("Password must be at least 8 characters long");
+                document.getElementById("sug").value=" ";
+                //return;
+            //}
+            table.innerHTML=table.innerHTML+user+"<br>";
+            document.getElementById("sug").value=" ";
+           // document.getElementById("pass").value=" ";
+        }
+    </script>
+    
+    <script>
+        function load(){
+            var e = document.getElementById("leaderboards");
+            var strUser = e.options[e.selectedIndex].text;
+            document.getElementById("board").innerHTML=strUser;
+            //alert(strUser);
+        }
+    </script>
+
+</body>
+</html> 
