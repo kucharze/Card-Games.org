@@ -6,14 +6,40 @@ https://blog.liveedu.tv/javascript-select-value/
 https://stackoverflow.com/questions/14496531/adding-two-numbers-concatenates-them-instead-of-calculating-the-sum
 https://stackoverflow.com/questions/6341774/keep-track-of-how-much-time-is-spent-showing-certain-elements-on-the-page
 https://marina-ferreira.github.io/projects/js/memory-game/
+https://www.w3schools.com/howto/howto_js_accordion.asp
 -->
 <html>
 <head>
     <title>CardGames.org</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
+    /* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+  background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  display: none;
+  overflow: hidden;
+}
 body {
-    background-color: aqua;
+    background-color:darkturquoise;
     font-family: Arial;
     }
 div.statusBox {
@@ -69,7 +95,8 @@ div.statusBox {
 <div id="Title" class="statusBox">Welcome to Card games.org</div>
     <label>Active User:</label>
     <label id="User">The user</label>
-<center><p>Choose your game.</p></center>
+<center><p>Choose your game.</p></center><br>
+    <center><p style="color: darkgreen">This site is currently under construction.  Some features might not work as intended.</p></center>
 
 <div class="tab">
     <button class="tablinks" onclick="openCity(event, 'Account')">Create an account</button>
@@ -145,6 +172,17 @@ div.statusBox {
     <br><br>
     <label id="reset">Click here to reset the game</label>
     
+    <button style="font-size: 20px" class="accordion">View Instructions</button>
+    <div class="panel">
+        <p>Both players will recieve a opening hand of seven cards.<br>
+        There is a card face up on the pile.<br>
+        Your job is to put a new card on the pile that is either of the same suit, or value, as the card that is
+        on the top of the pile.<br>
+        An eight will act as a wildcard.  Eights can be put down at
+        any time, and can change the active suit to any suit you want.<br>
+        The first player that gets rid of all of the cards in their hand wins.</p>   
+    </div>
+    
   <!--  <script src="test.js"></script>
     <!-- Load the model classes. -->
     <script src="Card.js"></script>
@@ -167,7 +205,7 @@ div.statusBox {
         var presenter = new Presenter();
         presenter.play();
         //presenter.solplay();</script>
-</div>
+    </div>
     
     <div id="Jack" class="tabcontent">
         <div id="jackstatus" class="statusBox">Welcome to Blackjack</div>
@@ -177,6 +215,17 @@ div.statusBox {
         <input type="button" value="Stand" onclick=stand() style="font-size: 18px">
         <br><br>
         <label id="jackreset">Click here to reset the game</label>
+        <button style="font-size: 20px" class="accordion">View Game Instructions</button>
+        <div class="panel">
+        <p><h2>Blackjack</h2>
+        <p>You and the dealer will recieve two cards.  You want to add up the values on each of the cards<br>
+        Kings, jacks, and queens all have a value of 10.<br>
+        An ace can have a value of either 1 or 11.<br>
+        You cannot go over 21 or you will bust.<br>
+        At the end of the round, add up the value of each players cards<br>
+        The player with the higher valued hand wins</p>
+        </div>
+        
         <script src="Jackplayer.js"></script>
         <script src="Jackpres.js"></script>
         <script src="Jackview.js"></script>
@@ -192,12 +241,16 @@ div.statusBox {
     
     <div id="Snap" class="tabcontent">
         <div id="jackstatus" class="statusBox">Welcome to Snip Snap Snorum</div>
-        <div id="cpuhand"><img src="Images/cardback.jpg"></div>
+        <div id="scpuhand"><img src="Images/cardback.jpg"></div>
         <div id="table"><img src="Images/cardback.jpg"></div>
         <div id="userhand"><img src="Images/cardback.jpg" title="start card"></div>
         <br> <br>
         <label style="font-size: 20px" id="fishreset">Click here to reset the game</label>
         <br><br>
+        <button style="font-size: 20px" class="accordion">View Instructions</button>
+        <div class="panel">
+            <p>Instructions to go here</p>
+            </div>
         <script>
             //let jack=new Jackpres();
             //jack.play();
@@ -209,6 +262,14 @@ div.statusBox {
     <div id="matchstatus" class="statusBox">Welcome to Memory Matcher</div>
         <label class="moves">You finished the game with this many moves: Number of moves will go here</label><br>
         <label class="mem">Try to match the cards in as little turns as possible</label><br>
+    <button style="font-size: 20px" class="accordion">View Instructions</button>
+        <div class="panel">
+            <p><h2>Matching</h2>
+        <p>Flip over two cards.<br>
+        If they have the same image on them keep them flipped over.<br>
+        Otherwise flip them back.<br>
+        Flip over all cards to win.</p>
+        </div>
         <label id="memreset">Click here to reset the game</label>
      <section class="memory-game">
     <div class="memory-card" data-framework="apple1">
@@ -283,6 +344,7 @@ div.statusBox {
      <img class="back-face" src="Images/cardback.png" alt="bluefront" />
 	 </div>
 	</section>
+            
   <script src="scripts-g1.js"></script>
 </div>
     
@@ -293,6 +355,11 @@ div.statusBox {
         <div id="fuserhand"><img src="Images/cardback.jpg" title="start card"></div>
         <br> <br>
         <label style="font-size: 20px" id="fishreset">Click here to reset the game</label>
+        <button style="font-size: 20px" class="accordion">View Instructions</button>
+        <div class="panel">
+            <p>Instructions to go here</p> 
+        </div>
+        
         <script src="Fishpres.js"></script>
         <script src="Fishview.js"></script>
         <script>
@@ -312,6 +379,12 @@ div.statusBox {
         <div id="soldecks"><img src="Images/cardback.png"><img src="Images/cardback.png"><img src="Images/cardback.png"><img src="Images/cardback.png"></div>
         <br>
         <label id="solreset" style="font-size: 25px">Click here to reset the game</label>
+        <button style="font-size: 20px" class="accordion">View Instructions</button>
+        <div class="panel">
+            <h2>Solitare</h2>
+            <p>Solitare instructions</p>
+        </div>
+        
         <script src="Solpres.js"></script>
         <script src="Solview.js"></script>
     <script>
@@ -325,13 +398,25 @@ div.statusBox {
 <div id="War" class="tabcontent">
   <div id="status" class="statusBox">Welcome to War</div>
     <div id="mydeck"><img src="Images/cardback.png" alt="Com deck"></div>
-    <div id="mywar"></div>
-    <div id="mycard"></div>
-    <div id="yourcard"></div>
-    <div id="yourwar"></div>
-    <div style="top: 1000px" id="yourdeck"><img src="Images/cardback.png" alt="playerdeck"></div>
+    <div id="mywar"><img src="Images/cardback.png" alt="Computerwarcard"></div>
+    <div id="mycard"><img src="Images/cardback.png" alt="playerdeck"></div>
+    <div id="yourcard"><img src="Images/cardback.png" alt="playerdeck"></div>
+    <div id="yourwar"><img src="Images/cardback.png" alt="playerwarcard"></div>
+    <div id="yourdeck"><img src="Images/cardback.png" alt="Playerdeck"></div>
     <br>
     <label id="warreset">Click here to reset the game</label>
+    <button style="font-size: 20px" class="accordion">View Instructions</button>
+        <div class="panel">
+            <h2>War</h2>
+            <p>Both players take a card from there deck and put it down.<br>
+            The player with the higer valued card takes both cards.<br>
+            If the values are tied, put out a card face down and face up.<br>
+            Flip the face down card over. The owner of the higher valued card wins all cards.</p>
+        </div>
+    
+    <script src="Warpres.js"></script>
+    <script src="Warview.js"></script>
+    
 </div>
     
 <div id="sugestions" class="tabcontent">
@@ -365,38 +450,7 @@ div.statusBox {
     <div id="instructions" class="tabcontent">
         <h1>Unsure how to play a certain game, check the rules here</h1>
         <h2>Crazy Eights</h2>
-        <p>Both players will recieve a opening hand of seven cards.<br>
-        There is a card face up on the pile.<br>
-        Your job is to put a new card on the pile that is either of the same suit, or value, as the card that is
-        on the top of the pile.<br>
-        An eight will act as a wildcard.  Eights can be put down at
-        any time, and can change the active suit to any suit you want.<br>
-        The first player that gets rid of all of the cards in their hand wins.</p>
-        <h2>Blackjack</h2>
-        <p>You and the dealer will recieve two cards.  You want to add up the values on each of the cards<br>
-        Kings, jacks, and queens all have a value of 10.<br>
-        An ace can have a value of either 1 or 11.<br>
-        You cannot go over 21 or you will bust.<br>
-        At the end of the round, add up the value of each players cards<br>
-        The player with the higher valued hand wins</p>
-        <h2>Matching</h2>
-        <p>Flip over two cards.<br>
-        If they have the same image on them keep them flipped over.<br>
-        Otherwise flip them back.<br>
-        Flip over all cards to win.</p>
-        <h2>Go Fish</h2>
-        <p>Start with 7 cards<br>
-        Ask your opponent if they have a card with a matching value as one of yours in their hand<br>
-        If they do, you both put those cards into the pile.<br>
-        If not draw a card.<br>
-        The first player to get rid of all the cards in their hand wins</p>
-        <h2>Solitare</h2>
-        <p>Solitare</p>
-        <h2>War</h2>
-        <p>Both players take a card from there deck and put it down.<br>
-        The player with the higer valued card takes both cards.<br>
-        If the values are tied, put out a card face down and face up.<br>
-        Flip the face down card over. The owner of the higher valued card wins all cards.</p>
+
 </div>
     
 <script>
@@ -451,6 +505,26 @@ function openCity(evt, cityName) {//Code for opening tabs
             var strUser = e.options[e.selectedIndex].text;
             document.getElementById("board").innerHTML=strUser;
             //alert(strUser);
+        }
+    </script>
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+        /* Toggle between adding and removing the "active" class,
+        to highlight the button that controls the panel */
+        this.classList.toggle("active");
+
+        /* Toggle between hiding and showing the active panel */
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+        panel.style.display = "none";
+        } else {
+        panel.style.display = "block";
+        }
+        });
         }
     </script>
 
