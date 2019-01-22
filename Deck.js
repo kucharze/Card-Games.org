@@ -40,7 +40,11 @@ class Deck {
   }
     
     isEmpty(){
-        return this.list.size==0;
+        return this.list.length==0;
+    }
+    
+    addACard(card){
+        this.list.push(card);
     }
   /**
    * Indicate whether or not top card of deck is an 8.

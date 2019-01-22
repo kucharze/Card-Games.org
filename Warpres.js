@@ -9,19 +9,20 @@ class Warpres {
      */
     constructor() {
         this.moves=0;
-	    this.deck = new Deck();
-	    this.deck.shuffle();
-	    while(this.deck.isTopCardAnEight()){
-            this.deck.shuffle();
-	    }
+	    this.deck1 = new Deck();
+	    this.deck1.shuffle();
+        this.deck1.shuffle();
+        this.cdeck=new Deck();
+        this.cdeck.shuffle();
+        this.cdeck.shuffle();
+        this.humanscore=0;
+        this.computerscore=0;
         
-        this.date=null;
-        this.started=false;
-	    this.pile = new Pile();
-	    this.pile.acceptACard(this.deck.dealACard());
-	    this.view = new View(this);
-	    this.human=new HumanPlayer(this.deck, this.pile, this.view);
-	    this.computer=new ComputerPlayer(this.deck, this.pile, this.view);
+	    //this.pile = new Pile();
+	    //this.pile.acceptACard(this.deck.dealACard());
+	    this.wview = new Warview(this);
+	    this.human=new HumanPlayer(this.deck1, this.pile, this.view);
+	    this.computer=new ComputerPlayer(this.cdeck, this.pile, this.view);
     }
 
 
@@ -37,41 +38,53 @@ class Warpres {
      }
     return;
  }
-
- completeBothTurns(){
-     this.moves++;
-    if(this.human.isHandEmpty()){
-       alert("You won in this many moves:"+this.moves);
-        let elapsed=new Date() -this.date;
-        alert("You won in this much time "+elapsed);
-	   this.view.announceHumanWinner();
-	   return;
+    
+    dealCards(){
+        //alert("Dealing the cards");
+        this.wview.displayMessage("Dealing the cards");
+        let humancard=this.deck1.dealACard();
+        let computercard=this.cdeck.dealACard();
+        this.wview.displayHumanCard(humancard);
+        this.wview.displayComputerCard(computercard);
+        if(humancard.warValue > computercard.warValue){
+            this.humanscore++;
+        }
+        else if(computercard.warValue > humancard.warValue){
+            this.computerscore++;
+        }
+        else{
+            this.war();
+        }
+        this.wview.displayMessage("Player:" + this.humanscore + " Computer:"+this.computerscore);
     }
-    this.computer.takeATurn();
-    if(this.computer.isHandEmpty()){
-	this.view.announceComputerWinner();
-     }
-     if(this.deck.isEmpty()){
-         this.deck=new Deck();
-         while(this.deck.isTopCardAnEight()){
-           this.deck.shuffle();
-	     }
-     }
-     return;
- }
-
-//Sets up the start of the game
- play(){//Set up for playing crazy eights
-     this.computer.countCards();
-     this.view.displayPileTopCard(this.pile.getTopCard());
-     this.view.displayComputerHand(this.computer.getHandCopy());
-     this.view.displayHumanHand(this.human.getHandCopy());
-     return;
- }
+    
+    war(){
+        let humandown=this.deck1.dealACard();
+        let humanwar=this.deck1.dealACard();
+        
+        let comdown=this.cdeck.dealACard();
+        let comwar=this.cdeck.dealACard();
+        
+        this.wview.displayHumanWarCards(humandown, humanwar);
+        this.wview.displayComputerWarCards(comdown, comwar);
+        
+        if(humanwar.warValue > comwar.warValue){
+            this.humanscore++;
+        }
+        else if(comwar.warValue > humanwar.warValue){
+            this.computerscore++;
+        }
+        else{
+            this.wview.displayMessage("Its a draw" +"Player:" + this.humanscore + " Computer:"+this.computerscore);
+            //this.war();
+        }
+        this.wview.displayMessage("Player:" + this.humanscore + " Computer:"+this.computerscore);
+    }
     
     resetGame(){//Resets the game with a new deck and players
-        this.view.eraseHands();
-        this.deck=new Deck();
+        //this.view.eraseHands();
+        this.deck1=new Deck();
+        this.cdeck=new Deck();
         this.moves=0;
         
 	    this.deck.shuffle();

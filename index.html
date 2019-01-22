@@ -110,8 +110,7 @@ div.statusBox {
     <button class="tablinks" onclick="openCity(event, 'War')">War</button>
     <button class="tablinks" onclick="openCity(event, 'sugestions')">Suggestions</button>
     <button class="tablinks" onclick="openCity(event, 'boards')">Leaderboards</button>
-    <button class="tablinks" onclick="openCity(event, 'instructions')">Game Instructions</button>
-        </div>
+</div>
 
 <div id="Account" class="tabcontent">
     <label id="data">Information</label>
@@ -213,6 +212,7 @@ div.statusBox {
         <div id="JDeck"><img src="Images/cardback.jpg"></div>
         <div id="playerhand"><img src="Images/cardback.jpg"></div>
         <input type="button" value="Stand" onclick=stand() style="font-size: 18px">
+        <input type="button" value="Hit" onclick=hit() style="font-size: 18px">
         <br><br>
         <label id="jackreset">Click here to reset the game</label>
         <button style="font-size: 20px" class="accordion">View Game Instructions</button>
@@ -235,6 +235,10 @@ div.statusBox {
             
             function stand(){
                 jack.stand();
+            }
+            
+            function hit(){
+                jack.hit();
             }
         </script>
     </div>
@@ -396,13 +400,13 @@ div.statusBox {
     </div>
 
 <div id="War" class="tabcontent">
-  <div id="status" class="statusBox">Welcome to War</div>
-    <div id="mydeck"><img src="Images/cardback.png" alt="Com deck"></div>
+  <div id="warstatus" class="statusBox">Welcome to War</div>
+    <div id="wmydeck"><img src="Images/cardback.png" alt="Com deck"></div>
     <div id="mywar"><img src="Images/cardback.png" alt="Computerwarcard"></div>
     <div id="mycard"><img src="Images/cardback.png" alt="playerdeck"></div>
     <div id="yourcard"><img src="Images/cardback.png" alt="playerdeck"></div>
     <div id="yourwar"><img src="Images/cardback.png" alt="playerwarcard"></div>
-    <div id="yourdeck"><img src="Images/cardback.png" alt="Playerdeck"></div>
+    <div id="wyourdeck"><img src="Images/cardback.png" alt="Playerdeck"></div>
     <br>
     <label id="warreset">Click here to reset the game</label>
     <button style="font-size: 20px" class="accordion">View Instructions</button>
@@ -416,6 +420,11 @@ div.statusBox {
     
     <script src="Warpres.js"></script>
     <script src="Warview.js"></script>
+    <script>
+        "use strict"
+        let warpres = new Warpres();
+        //warpres.play();
+    </script>
     
 </div>
     
@@ -445,12 +454,6 @@ div.statusBox {
     <input type="button" onclick=load() value="Load Leaderboard" font-size="20px" ><br>
     <p id="board">This is the spot where the leaderboards will appear<br>
     when the button is clicked with a value selected<br></p>
-</div>
-    
-    <div id="instructions" class="tabcontent">
-        <h1>Unsure how to play a certain game, check the rules here</h1>
-        <h2>Crazy Eights</h2>
-
 </div>
     
 <script>

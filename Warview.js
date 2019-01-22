@@ -9,24 +9,22 @@ class Warview {
     this.presenter = presenter;
     this.topCard = null;
     this.topCardString = "";
-    //this.errorString = "";
+    
     document.getElementById("warreset").addEventListener("click", function(){presenter.resetGame();})
         
     //document.getElementById("deck").addEventListener("click", function(){presenter.cardPicked();})
     //document.getElementById("suitPicker").addEventListener("click", function() {presenter.suitPicked(event.target.id);});
-    document.getElementById("yourdeck").addEventListener("click",function(){presenter.cardSelected(event.target.title);});
+    document.getElementById("wyourdeck").addEventListener("click", function(){presenter.dealCards();});
   }
 
   announceComputerWinner(){
     let CPUwinner = document.getElementById("warstatus");
     CPUwinner.innerHTML="Thanks for being a good loser";
-    //CPUwinner.style="display: block";
   }
 
   announceHumanWinner(){
     let humanwin = document.getElementById("warstatus");
     humanwin.innerHTML="Congradulations! You win!";
-    //humanwin.style="display: block";
   }
 
   displayComputerCard(hand){
@@ -35,10 +33,10 @@ class Warview {
 	   cpu.removeChild(cpu.lastChild);
       }
          let image=document.createElement("img");
-         image.src ="./Images/"+hand[i].toString()+".png";
-	       image.title=hand[i].toString();
+         image.src ="./Images/"+hand.toString()+".png";
+	       image.title=hand.toString();
 	       image.class="card positionable";
-	       image.style="left: "+  (15*i) + " px; z-index:" + i +"";
+	       image.style="left: "+  (15) + " px; z-index:" + 1 +"";
 	       cpu.appendChild(image);
   }
 
@@ -48,12 +46,59 @@ class Warview {
 	       human.removeChild(human.lastChild);
       }
          let image=document.createElement("img");
-         image.src ="./Images/"+hand[i].toString()+".png";
-	       image.title=hand[i].toString();
+         image.src ="./Images/"+hand.toString()+".png";
+	       image.title=hand.toString();
 	       image.class="card positionable";
-	       image.style="left: "+  (15*i) + " px; z-index:" + i +"";
+	       image.style="left: "+  (15) + " px; z-index:" + 1 +"";
 	       human.appendChild(image);
-  }
+    }
+    
+    displayHumanWarCards(cardup,cardd){
+        let war=document.getElementById("yourwar");
+        
+        while(war.hasChildNodes()){
+	       war.removeChild(war.lastChild);
+        }
+        let image1=document.createElement("img");
+        image1.src ="./Images/"+cardup.toString()+".png";
+	    image1.title=cardup.toString();
+	    image1.class="card positionable";
+	    image1.style="left: "+  (15) + " px; z-index:" + 1 +"";
+	    war.appendChild(image1);
+        
+        let image2=document.createElement("img");
+        image2.src ="./Images/"+cardd.toString()+".png";
+	    image2.title=cardd.toString();
+	    image2.class="card positionable";
+	    image2.style="left: "+  (15) + " px; z-index:" + 1 +"";
+	    war.appendChild(image2);        
+    }
+    
+    displayComputerWarCards(cardup, cardd){
+        let war=document.getElementById("mywar");
+        
+        while(war.hasChildNodes()){
+	       war.removeChild(war.lastChild);
+        }
+        let image1=document.createElement("img");
+        image1.src ="./Images/"+cardup.toString()+".png";
+	    image1.title=cardup.toString();
+	    image1.class="card positionable";
+	    image1.style="left: "+  (15) + " px; z-index:" + 1 +"";
+	    war.appendChild(image1);
+        
+        let image2=document.createElement("img");
+        image2.src ="./Images/"+cardd.toString()+".png";
+	    image2.title=cardd.toString();
+	    image2.class="card positionable";
+	    image2.style="left: "+  (15) + " px; z-index:" + 1 +"";
+	    war.appendChild(image2);
+    }
+    
+    displayMessage(message){
+        let mes=document.getElementById("warstatus");
+        mes.innerHTML=message;
+    }
     
     eraseHands(){
         let human=document.querySelector("#yourHand");
