@@ -8,7 +8,7 @@ class Warpres {
      * and dealing 7 cards to each player.
      */
     constructor() {
-        this.moves=0;
+        //this.moves=0;
 	    this.deck1 = new Deck();
 	    this.deck1.shuffle();
         this.deck1.shuffle();
@@ -77,24 +77,20 @@ class Warpres {
         else{
             this.wview.displayMessage("Its a draw" +"Player:" + this.humanscore + " Computer:"+this.computerscore);
             //this.war();
+            return;
         }
         this.wview.displayMessage("Player:" + this.humanscore + " Computer:"+this.computerscore);
+        return;
     }
     
     resetGame(){//Resets the game with a new deck and players
         //this.view.eraseHands();
         this.deck1=new Deck();
         this.cdeck=new Deck();
-        this.moves=0;
+        //this.moves=0;
         
-	    this.deck.shuffle();
-	    while(this.deck.isTopCardAnEight()){
-            this.deck.shuffle();
- 	    }
-        this.date=null;
-        this.started=false;
-	    this.pile = new Pile();
-	    this.pile.acceptACard(this.deck.dealACard());
+	    //this.pile = new Pile();
+	    //this.pile.acceptACard(this.deck.dealACard());
 	    this.human = new HumanPlayer(this.deck, this.pile, this.view);
 	    this.computer = new ComputerPlayer(this.deck, this.pile, this.view);
         this.view.displayPileTopCard(this.pile.getTopCard());

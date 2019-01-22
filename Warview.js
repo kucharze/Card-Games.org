@@ -9,7 +9,7 @@ class Warview {
     this.presenter = presenter;
     this.topCardString = "";
     
-    document.getElementById("warreset").addEventListener("click", function(){presenter.resetGame();})
+    //document.getElementById("warreset").addEventListener("click", function(){presenter.resetGame();})
         
     //document.getElementById("deck").addEventListener("click", function(){presenter.cardPicked();})
     //document.getElementById("suitPicker").addEventListener("click", function() {presenter.suitPicked(event.target.id);});
