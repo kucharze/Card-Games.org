@@ -7,7 +7,6 @@ class Warview {
     
     constructor(presenter) {
     this.presenter = presenter;
-    this.topCard = null;
     this.topCardString = "";
     
     document.getElementById("warreset").addEventListener("click", function(){presenter.resetGame();})
