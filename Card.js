@@ -1,5 +1,5 @@
 /**
- * A single playing card.
+ * A single playing card  
  */
 class Card {
 
@@ -14,32 +14,38 @@ class Card {
       this.value = aValue;
       this.pixelOffset = 15;
       this.flipped=false;
-      this.cardValue = 0;
+      this.jackValue = 0;
       this.sValue = 0;
+      this.warValue=0;
       this.setValues(aValue);
   }
     
     setValues(aValue){
         if(aValue=="k"){
-            this.cardValue=10;
+            this.jackValue=10;
             this.sValue=13;
+            this.warValue=13;
         }
      // /*
         else if(aValue=="j"){
-            this.cardValue=10;
+            this.jackValue=10;
             this.sValue=11;
+            this.warValue=11;
         }
         else if(aValue=="q"){
-            this.cardValue=10;
+            this.jackValue=10;
             this.sValue=12;
+            this.warValue=12;
         }
         else if(aValue=="a"){
-            this.cardValue=11;
+            this.jackValue=11;
             this.sValue=1;
+            this.warValue=14;
         }
         else{
-            this.cardValue=aValue;
+            this.jackValue=aValue;
             this.sValue=aValue;
+            this.warValue=aValue;
         }
       //*/
     }
