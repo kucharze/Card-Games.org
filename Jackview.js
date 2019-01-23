@@ -10,7 +10,7 @@ class Jackview {
     this.topCardString = "";
     //document.getElementById("reset").addEventListener("click", function(){presenter.resetGame();})
         
-    document.getElementById("JDeck").addEventListener("click", function(){jpres.hit();});
+    //document.getElementById("JDeck").addEventListener("click", function(){jpres.hit();});
     document.getElementById("jackreset").addEventListener("click", function(){jpres.resetGame();});
     //document.getElementById("playerhand").addEventListener("click",function(){presenter.cardSelected(event.target.title);});
   }
@@ -71,24 +71,24 @@ class Jackview {
     
   /**
    * Block user from playing.
-   
+   */
   blockPlay() {
     // Capture and ignore all clicks
-      document.getElementById("JDeck").removeEventListener("click",function(){jpres.hit();},true);
+      document.getElementById("JDeck").addEventListener("click", function(){jpres.hit();});
     //document.body.addEventListener("click", this.clickBlocker, true);
     // Dim the cards to indicate that play is blocked.
     //this.allCardsDiv.style.opacity = 0.5;
   }
   /**
    * Unblock user from playing.
-   
+   */
   unblockPlay() {
     // Remove capturing listener
-    document.body.removeEventListener("click", event.stopPropagation(), true);
+    document.getElementById("JDeck").addEventListener("click", function(){jpres.hit();});
     // Undim the cards to indicate that play is no longer blocked.
     //this.allCardsDiv.style.opacity = 1.0;
   }
-    */
+    //*/
     eraseHands(){
         let human=document.getElementById("playerhand");
         let computer=document.getElementById("dealerhand");
