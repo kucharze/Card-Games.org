@@ -13,7 +13,7 @@ class Warview {
         
     //document.getElementById("deck").addEventListener("click", function(){presenter.cardPicked();})
     //document.getElementById("suitPicker").addEventListener("click", function() {presenter.suitPicked(event.target.id);});
-    document.getElementById("wyourdeck").addEventListener("click", function(){presenter.dealCards();});
+    //document.getElementById("wyourdeck").addEventListener("click", function(){presenter.dealCards();});
   }
 
   announceComputerWinner(){
@@ -28,9 +28,23 @@ class Warview {
 
   displayComputerCard(hand){
      let cpu = document.getElementById("mycard");
+     let war=document.getElementById("mywar"); 
+      
      while(cpu.hasChildNodes()){
 	   cpu.removeChild(cpu.lastChild);
       }
+      
+      while(war.hasChildNodes()){
+	       war.removeChild(war.lastChild);
+      }
+      
+        let w=document.createElement("img");
+        w.src ="./Images/cardback.png";
+	    w.class="card positionable";
+	    w.style="left: "+  (15) + " px; z-index:" + 1 +"";
+	    war.appendChild(w);
+        war.appendChild(w);
+      
          let image=document.createElement("img");
          image.src ="./Images/"+hand.toString()+".png";
 	       image.title=hand.toString();
@@ -41,9 +55,20 @@ class Warview {
 
   displayHumanCard(hand){
      let human = document.getElementById("yourcard");
+      let war=document.getElementById("yourwar");
      while(human.hasChildNodes()){
 	       human.removeChild(human.lastChild);
       }
+      while(war.hasChildNodes()){
+	       war.removeChild(war.lastChild);
+      }
+        let w=document.createElement("img");
+        w.src ="./Images/cardback.png";
+	    w.class="card positionable";
+	    w.style="left: "+  (15) + " px; z-index:" + 1 +"";
+	    war.appendChild(w);
+        war.appendChild(w);
+      
          let image=document.createElement("img");
          image.src ="./Images/"+hand.toString()+".png";
 	       image.title=hand.toString();

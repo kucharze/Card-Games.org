@@ -7,7 +7,7 @@ class Jackplayer {
     constructor(deck,dealer) {
     /** This player's hand. */
       this.list = new Array();
-      //this.deck=deck;
+      
     // Get 2 cards from the deck and store them in this hand.
     for (let i=1; i<=2; i++) {
       this.list.push(deck.dealACard());
@@ -16,17 +16,19 @@ class Jackplayer {
              for (let i=0; i<1; i++) {
                 this.list[i].flip();
             }
-            //this.list[1].flip();
         }
         this.value=0;
+        this.value2=0;
   }
     
     findValue(){
         let hand=this.list;
         this.value=0;
+        this.value2=0;
         for(let i=0; i<hand.length; i++){
             //alert(hand[i].cardValue);
-            this.value=(+this.value + +hand[i].cardValue);
+            this.value=(+this.value + +hand[i].jackValue);
+            this.value2=(+this.value2 + +hand[i].jackValue2);
         }
     }
     

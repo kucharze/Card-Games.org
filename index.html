@@ -11,7 +11,7 @@ https://www.w3schools.com/howto/howto_js_accordion.asp
 <html>
 <head>
     <title>CardGames.org</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
 <style>
     /* Style the buttons that are used to open and close the accordion panel */
 .accordion {
@@ -173,13 +173,28 @@ div.statusBox {
     
     <button style="font-size: 20px" class="accordion">View Instructions</button>
     <div class="panel">
-        <p>Both players will recieve a opening hand of seven cards.<br>
-        There is a card face up on the pile.<br>
-        Your job is to put a new card on the pile that is either of the same suit, or value, as the card that is
-        on the top of the pile.<br>
-        An eight will act as a wildcard.  Eights can be put down at
-        any time, and can change the active suit to any suit you want.<br>
-        The first player that gets rid of all of the cards in their hand wins.</p>   
+        <h2>Crazy Eights rules</h2>
+        <p>Seven cards are dealt to each player.<br>
+The remaining cards of the deck are placed face down on the table.<br> 
+The top card is then turned face up to start the game.<br>
+
+Goal is to get rid of all your cards first.<br>
+
+When it is your turn, you discard by matching number/rank or suit with the top card of the discard pile.<br>
+
+If you are unable to match card or number, and you have an 8; you can play it.<br>
+If you do not have an 8 or matching card, you must draw a card from the stockpile.<br> 
+
+When a player plays an 8, they must declare the suit that the next player is to play; that player must then follow the named suit or play another 8.<br>
+
+Example: a 6 clubs is currently on the pile. You can<br>
+ - play any of the other 6s<br>
+ - play any of the clubs<br>
+ - play any 8 (You must then procede to declare a suit)<br> 
+ - draw from the stockpile  ?(until willing and able to play one of the above)<br>
+
+The first player to empty their hand wins.<br>
+</p>   
     </div>
     
   <!--  <script src="test.js"></script>
@@ -209,21 +224,27 @@ div.statusBox {
     <div id="Jack" class="tabcontent">
         <div id="jackstatus" class="statusBox">Welcome to Blackjack</div>
         <div id="dealerhand"><img src="Images/cardback.jpg"></div>
-        <div id="JDeck"><img src="Images/cardback.jpg"></div>
         <div id="playerhand"><img src="Images/cardback.jpg"></div>
-        <input type="button" value="Stand" onclick=stand() style="font-size: 18px">
-        <input type="button" value="Hit" onclick=hit() style="font-size: 18px">
+        <input type="button" id="stand" value="Stand" onclick=stand() style="font-size: 18px">
+        <input type="button" id="hit" value="Hit" onclick=hit() style="font-size: 18px">
         <br><br>
         <label id="jackreset">Click here to reset the game</label>
         <button style="font-size: 20px" class="accordion">View Game Instructions</button>
         <div class="panel">
-        <p><h2>Blackjack</h2>
-        <p>You and the dealer will recieve two cards.  You want to add up the values on each of the cards<br>
-        Kings, jacks, and queens all have a value of 10.<br>
-        An ace can have a value of either 1 or 11.<br>
-        You cannot go over 21 or you will bust.<br>
-        At the end of the round, add up the value of each players cards<br>
-        The player with the higher valued hand wins</p>
+        <p><h2>Blackjack Rules</h2>
+        <p>Most think the object of blackjack is to get to 21 as possible. <br>
+        The main object is to beat the dealer without going over.<br>
+To beat the dealer the player must first not go over 21 and either outscore the dealer or have the dealer go over 21. Here are the full rules of the game.<br>
+1.	Aces may be counted as 1 or 11 points, 2 to 9 according to pip value, and tens and face cards count as ten points.<br>
+2.	The value of a hand is the sum of the point values of the individual cards. A "blackjack" is the highest hand.  (Any 10-point card and an Ace = 21 points).<br>
+3.	The following are the choices available to the player: <br>
+•	Stand: Player stands pat with his cards.<br>
+•	Hit: Player draws another card (and more if he wishes). If this card causes the player's total points to exceed 21 (known as "breaking" or "busting") then he loses.<br>
+4.	After each player has had his turn, the dealer will turn over his hole card. If the dealer has 16 or less, then he will draw another card. A special situation is when the dealer has an ace and any number of cards totaling six points (known as a "soft 17"). At some tables, the dealer will also hit a soft 17.<br>
+5.	If the dealer goes over 21 points, then any player who didn't already bust will win.<br>
+6.	If the dealer does not bust, then the higher point total between the player and dealer will win.<br>
+7.	Winning wagers pay even money, except a winning player blackjack usually pays 3 to 2. Some casinos have been short-paying blackjacks, which is a rule strongly in the casino's favor.
+</p>
         </div>
         
         <script src="Jackplayer.js"></script>
@@ -253,7 +274,18 @@ div.statusBox {
         <br><br>
         <button style="font-size: 20px" class="accordion">View Instructions</button>
         <div class="panel">
-            <p>Instructions to go here</p>
+            <h1>Snip Snap Snorum</h1>
+            <p>The cards in each suit rank: K (high), Q, J, 10, 9, 8, 7, 6, 5, 4, 3, 2, A.<br>
+                The goal is to be the first player to get rid of all his cards.<br>
+                Deal the cards out completely.  The object of the game is to get rid of all your cards.<br>
+                The player starts by placing any card down on the table.<br>
+                The next player looks to see if they have a card of the same rank.<br> 
+                If they do, they place it down on top of the card, saying "Snip".<br>
+                If they have another card of the same rank, they place it down too, saying "Snap". <br>
+                If they don't, play passes to the next player<br>
+                Whoever places the final card of that rank says "Snorem" and wins the right to start the next round with the card of their choice.<br>
+                Example: the first card played = 5 Clubs, the next card to be played = 5 Hearts, then 5 Diamonds, and 5 Spades.
+</p>
             </div>
         <script>
             //let jack=new Jackpres();
@@ -401,21 +433,25 @@ div.statusBox {
 
 <div id="War" class="tabcontent">
   <div id="warstatus" class="statusBox">Welcome to War</div>
-    <div id="wmydeck"><img src="Images/cardback.png" alt="Com deck"></div>
     <div id="mywar"><img src="Images/cardback.png" alt="Computerwarcard"></div>
     <div id="mycard"><img src="Images/cardback.png" alt="playerdeck"></div>
     <div id="yourcard"><img src="Images/cardback.png" alt="playerdeck"></div>
     <div id="yourwar"><img src="Images/cardback.png" alt="playerwarcard"></div>
-    <div id="wyourdeck"><img src="Images/cardback.png" alt="Playerdeck"></div>
+    
+    <input type="button" onclick="deal()" value="Play a Round">
     <br>
     <label id="warreset">Click here to reset the game</label>
     <button style="font-size: 20px" class="accordion">View Instructions</button>
         <div class="panel">
             <h2>War</h2>
-            <p>Both players take a card from there deck and put it down.<br>
-            The player with the higer valued card takes both cards.<br>
-            If the values are tied, put out a card face down and face up.<br>
-            Flip the face down card over. The owner of the higher valued card wins all cards.</p>
+            <p>The objective of the game is to win all cards.<br>
+In unison, each player reveals the top card of their deck and the player with the higher card takes both of the cards played and moves them to their stack. Aces are high, and suits are ignored.<br>
+If the two cards played are of equal value, then there is a "war".<br>
+Both players place the next card of their pile face down, depending on the variant, and then another card face-up.<br> 
+The owner of the higher face-up card wins the war and adds all six cards on the table to the bottom of their deck.<br>
+If the face-up cards are again equal then the battle repeats with another set of face-down/up cards. <br>
+            This repeats until one player's face-up card is higher than their opponent's.<br>
+.</p>
         </div>
     
     <script src="Warpres.js"></script>
@@ -424,6 +460,10 @@ div.statusBox {
         "use strict"
         let warpres = new Warpres();
         //warpres.play();
+        
+        function deal(){
+            warpres.dealCards();
+        }
     </script>
     
 </div>

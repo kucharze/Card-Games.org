@@ -15,35 +15,41 @@ class Card {
       this.pixelOffset = 15;
       this.flipped=false;
       this.jackValue = 0;
+      this.jackValue2 = 0;
       this.sValue = 0;
       this.warValue=0;
       this.setValues(aValue);
   }
     
-    setValues(aValue){
+    setValues(aValue){//Used to set card values for use in certain games
         if(aValue=="k"){
             this.jackValue=10;
+            this.jackValue2=10;
             this.sValue=13;
             this.warValue=13;
         }
      // /*
         else if(aValue=="j"){
             this.jackValue=10;
+            this.jackValue2=10;
             this.sValue=11;
             this.warValue=11;
         }
         else if(aValue=="q"){
             this.jackValue=10;
+            this.jackValue2=10;
             this.sValue=12;
             this.warValue=12;
         }
         else if(aValue=="a"){
             this.jackValue=11;
+            this.jackValue2=1;
             this.sValue=1;
             this.warValue=14;
         }
         else{
             this.jackValue=aValue;
+            this.jackValue2=aValue;
             this.sValue=aValue;
             this.warValue=aValue;
         }
