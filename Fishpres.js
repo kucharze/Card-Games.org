@@ -51,7 +51,23 @@ class Fishpres {
     
     fish(cardstring){
         alert(cardstring);
-        this.human.fish();
+        let card=this.human.fish(cardstring);
+        alert(card);
+        if(card==null){
+            return;
+        }
+        if(!this.computer.give(card)){
+            this.human.cardPicked();
+        }
+    }
+    
+    removeDups(){
+        if(this.human.hasDuplicate()){
+            alert("removing duplicates");
+        }
+        else{
+            alert("There are no Duplicats");
+        }
     }
 
 //Sets up the start of the game
@@ -62,6 +78,7 @@ class Fishpres {
  }
     
     resetGame(){
+        //alert("attempting to reset");
         this.fview.eraseHands();
         this.deck=new Deck();
         this.moves=0;

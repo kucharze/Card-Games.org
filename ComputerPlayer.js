@@ -143,10 +143,11 @@ class ComputerPlayer extends Player{
             if(hand[i]==card){
                 this.pile.acceptACard(hand[i]);
                 this.remove(i);
+                return true;
             }
         }
         
-        return;
+        return false;
     }
     
 }

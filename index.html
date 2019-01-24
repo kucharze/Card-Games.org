@@ -385,12 +385,13 @@ To beat the dealer the player must first not go over 21 and either outscore the 
 </div>
     
     <div id="gofish" class="tabcontent">
-        <div id="status" class="statusBox">Welcome to Go Fish</div>
+        <div id="fishstatus" class="statusBox">Welcome to Go Fish</div>
         <div id="cpuhand"><img src="Images/cardback.jpg"></div>
         <div id="table"><img src="Images/cardback.jpg"><img src="Images/cardback.jpg"></div>
         <div id="fuserhand"><img src="Images/cardback.jpg" title="start card"></div>
+        <input type="button" id="dups" value="Remove all duplicates from hand" onclick="dups()">
         <br> <br>
-        <label style="font-size: 20px" id="fishreset">Click here to reset the game</label>
+        <label style="font-size: 20px" id="gofishreset">Click here to reset the game</label>
         <button style="font-size: 20px" class="accordion">View Instructions</button>
         <div class="panel">
             <p>Instructions to go here</p> 
@@ -402,6 +403,10 @@ To beat the dealer the player must first not go over 21 and either outscore the 
             'use strict'
             var fpres=new Fishpres();
             fpres.play();
+            
+            function dups(){
+                fpres.removeDups();
+            }
         </script>
     </div>
     

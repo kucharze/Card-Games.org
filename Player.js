@@ -31,8 +31,20 @@ class Player {
                 }
             }
         }
-        
         return false;
+    }
+    
+    findDups(){
+        let hand=this.getHandCopy();
+        
+        for(let i=0; i<hand.length; i++){
+            for(let j=(i+1); j<hand.length; j++){
+                if(hand[i].getValue() == hand[j].getValue()){
+                    return hand[i].getValue();
+                }
+            }
+        }
+        return null;
     }
   /**
    * Add the given Card object to this player's hand.
@@ -47,6 +59,22 @@ class Player {
   remove(i) {
     this.list.splice(i,1);
   }
+    
+    findValue(cardvalue){
+        let i = 0;
+        let card = null;
+        while (i<this.list.length && !card) {
+            if (this.list[i].getValue() == cardvalue) {
+                card = this.list[i];
+            }
+        i++;
+        }
+        return card;
+    }
+    
+    findSuit(cardsuit){
+        
+    }
   /**
    * Given the string specification of a card,
    * return the card if it is in this player's hand

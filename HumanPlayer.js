@@ -42,15 +42,31 @@ class HumanPlayer extends Player {
     fish(cardString){
         if(this.hasDuplicate()){
             this.view.displayDupCardMsg();
-            return;
+            //let dup=this.findDups();
+            //this.removeDups(dup);
+            return null;
         }
         let card =this.find(cardString);
-        if((card ==null)){
+        if((card == null)){
             this.view.displayWrongCardMsg(cardString);
-            return false;
+            //this.remove(this.list.indexOf(card));
+            return null;
         }else{
+            return card;
             //presenter.askComputerforcard
         }
+    }
+    
+    removeDups(){
+        for(let i=0; i<hand.length; i++){
+            for(let j=(i+1); j<hand.length; j++){
+                if(hand[i].getValue() == hand[j].getValue()){
+                    this.remove(this.list.indexOf(hand[i]));
+                    this.remove(this.list.indexOf(hand[j]));
+                }
+            }
+        }
+        
     }
     
     give(cardString, comCard){

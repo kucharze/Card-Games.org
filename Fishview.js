@@ -10,9 +10,7 @@ class Fishview {
     this.topCard = null;
     this.topCardString = "";
     this.errorString = "";
-    document.getElementById("fishreset").addEventListener("click", function(){presenter.resetGame();});
-        
-    //document.getElementById("deck").addEventListener("click", function(){presenter.cardPicked();})
+    document.getElementById("gofishreset").addEventListener("click", function(){presenter.resetGame();});
     
     document.getElementById("fuserhand").addEventListener("click",function(){presenter.fish(event.target.title);});
         
@@ -85,6 +83,11 @@ class Fishview {
 	 //image.style="left: "+  (15*i) + " px; z-index:" + i +"";
 	 table.appendChild(image);
   }
+    
+    displayMessage(message){
+        let mes=document.getElementById("fishstatus");
+        mes.innerHTML=message;
+    }
 
    displayDupCardMsg(){
 	   alert("Your hand contains a duplicate. Please place down all duplicates");
