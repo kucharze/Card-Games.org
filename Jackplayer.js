@@ -18,7 +18,8 @@ class Jackplayer {
             }
         }
         this.value=0;
-        this.value2=0;
+        //this.value2=0;
+        this.numAces=0;
   }
     
     findValue(){
@@ -28,8 +29,35 @@ class Jackplayer {
         for(let i=0; i<hand.length; i++){
             //alert(hand[i].cardValue);
             this.value=(+this.value + +hand[i].jackValue);
-            this.value2=(+this.value2 + +hand[i].jackValue2);
+            //this.value2=(+this.value2 + +hand[i].jackValue2);
         }
+    }
+    
+    hasAce(){
+        let hand = this.getHandCopy();
+        
+        for(var i=0; i<hand.length; i++){
+            if(hand[i].getValue() == "a"){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    subtractAce(){
+        this.value=this.value-10;
+    }
+    
+    countAces(){
+        let num=0;
+        let hand=this.getHandCopy();
+        
+        for(var i=0; i<hand.length; i++){
+            if(hand[i].getValue() == "a"){
+                num++;
+            }
+        }
+        return num;
     }
     
   /**
