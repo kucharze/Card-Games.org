@@ -10,23 +10,12 @@ class Fishview {
     this.topCard = null;
     this.topCardString = "";
     this.errorString = "";
-    document.getElementById("gofishreset").addEventListener("click", function(){presenter.resetGame();});
+        document.getElementById("gofishreset").addEventListener("click", function(){presenter.resetGame();});
     
-    document.getElementById("fuserhand").addEventListener("click",function(){presenter.fish(event.target.title);});
+        document.getElementById("fuserhand").addEventListener("click",function(){presenter.fish(event.target.title);});
         
+        document.getElementById("cards").addEventListener("click",function(){presenter.cardPicked();});
     //document.getElementById("yourHand").addEventListener("click",function(){presenter.cardSelected(event.target.title);});
-  }
-
-  announceComputerWinner(){
-    let CPUwinner = document.getElementById("announcer");
-    CPUwinner.textContent="Thanks for being a good loser";
-    CPUwinner.style="display: block";
-  }
-
-  announceHumanWinner(){
-    let humanwin = document.getElementById("announcer");
-    humanwin.textContent="Congradulations! You win!";
-    humanwin.style="display: block";
   }
 
   displayComputerHand(hand){
@@ -37,6 +26,7 @@ class Fishview {
     for(let i=0; i<hand.length; i++){
         let image=document.createElement("img");
 	   image.src ="./Images/cardback.jpg";
+        image.title=hand[i].toString();
 	   image.class="card positionable";
 	   image.style="left: "+  (15*i) + " px; z-index:" + i +" hieght:10px";
 	   cpu.appendChild(image);
@@ -46,16 +36,16 @@ class Fishview {
   displayHumanHand(hand){
      let human = document.getElementById("fuserhand");
      while(human.hasChildNodes()){
-	 human.removeChild(human.lastChild);
-      }
+	   human.removeChild(human.lastChild);
+     }
      for(let i=0; i<hand.length; i++){
          let image=document.createElement("img");
-	 image.src ="./Images/"+hand[i].toString()+".png";
-	 image.title=hand[i].toString();
-	 image.class="card positionable";
-	 image.style="left: "+  (15*i) + " px; z-index:" + i +"";
-	 human.appendChild(image);
-   }
+	   image.src ="./Images/"+hand[i].toString()+".png";
+	   image.title=hand[i].toString();
+	   image.class="card positionable";
+	   image.style="left: "+  (15*i) + " px; z-index:" + i +"";
+	   human.appendChild(image);
+    }
   }
     
     eraseHands(){

@@ -18,6 +18,11 @@ class ComputerPlayer extends Player{
       this.diamonds=0;
       this.spades=0;
   }
+    
+    cardPicked(){
+        this.list.push(this.deck.dealACard());
+        this.view.displayComputerHand(this.getHandCopy());
+    }
   /**
    * Play for the computer, updating the computer's hand as well as
    * the deck and pile as appropriate.  In this version, the computer 
@@ -116,8 +121,8 @@ class ComputerPlayer extends Player{
             }
         }
     }
-  
-    fish(){
+    
+    removeDups(){
         let hand=this.getHandCopy();
         for(var i=0; i<hand.length-1; i++){//check for present matches
             for(var j=i+1; j<hand.length-1; j++){
@@ -129,18 +134,21 @@ class ComputerPlayer extends Player{
                 }
             }
         }
-        hand=this.getHandCopy();
+    }
+  
+    fish(){
+        let hand=this.getHandCopy();
         //Randomly chose anumber between 0 and handsize -1
         let ran=Math.floor((Math.random() * (hand.length-1)) + 0);
         //ask human player for card of value that is the same as the card at the randomly chosen position position
         
-        return;
+        return hand[ran];
     }
     
     give(card){
         let hand=this.getHandCopy();
         for(var i=0; i<hand.length-1; i++){
-            if(hand[i]==card){
+            if(hand[i].getValue()==card.getValue()){
                 this.pile.acceptACard(hand[i]);
                 this.remove(i);
                 return true;

@@ -8,6 +8,7 @@ class HumanPlayer extends Player {
         this.deck = deck;
 	    this.pile = pile;
 	    this.view = view;
+        this.fish=true;//True if it is the players turn to ask opponent for a card
     }
 
   cardPicked(){
@@ -58,6 +59,7 @@ class HumanPlayer extends Player {
     }
     
     removeDups(){
+        let hand=this.getHandCopy();
         for(let i=0; i<hand.length; i++){
             for(let j=(i+1); j<hand.length; j++){
                 if(hand[i].getValue() == hand[j].getValue()){
@@ -66,7 +68,6 @@ class HumanPlayer extends Player {
                 }
             }
         }
-        
     }
     
     give(cardString, comCard){
