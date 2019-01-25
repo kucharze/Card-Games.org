@@ -14,7 +14,7 @@ class Fishview {
     
         document.getElementById("fuserhand").addEventListener("click",function(){presenter.fish(event.target.title);});
         
-        document.getElementById("cards").addEventListener("click",function(){presenter.cardPicked();});
+        //document.getElementById("cards").addEventListener("click",function(){presenter.cardPicked();});
     //document.getElementById("yourHand").addEventListener("click",function(){presenter.cardSelected(event.target.title);});
   }
 

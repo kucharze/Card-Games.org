@@ -19,7 +19,7 @@ class Player {
   isHandEmpty() {  
     return this.list.length == 0;
   }
-    
+  /*Returns true if hand has two of the same value*/  
     hasDuplicate(){
         //let dup=false;
         let hand=this.getHandCopy();
@@ -34,6 +34,7 @@ class Player {
         return false;
     }
     
+    /*Find the duplicates in a hand*/
     findDups(){
         let hand=this.getHandCopy();
         
@@ -45,6 +46,17 @@ class Player {
             }
         }
         return null;
+    }
+    
+    hasValue(value){
+        let hand=this.getHandCopy();
+        
+        for(var i=0; i<hand.length; i++){
+            if(hand[i].getValue()==value){
+                return true;
+            }
+        }
+        return false;
     }
   /**
    * Add the given Card object to this player's hand.

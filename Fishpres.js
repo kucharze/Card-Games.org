@@ -35,19 +35,33 @@ class Fishpres {
         this.askCard=card;
     }
     
+    sayNo(){
+        if(this.human.hasValue(this.askCard.getValue())){
+            alert("You have a card that you can play");
+            return;
+        }
+        else{
+            this.computer.cardPicked();
+        }
+        this.human.fish=true;
+        this.fview.displayMessage("Pick a card to ask for");
+    }
+    
     fish(cardstring){
         if(!this.human.fish){
             if(this.human.give(cardstring,this.askCard)){
-                this.computer.remove(this.computer.indexOf(this.askCard));
+            this.computer.remove(this.computer.indexOf(this.askCard));
+                this.fview.displayMessage("Pick a card to ask for");
+                this.human.fish=true;
             }else{
-                this.computer.cardPicked();
+                this.fview.displayWrongCardMsg();
             }
             return;
         }
         alert("We are fishing");
-        alert(cardstring);
+        //alert(cardstring);
         let card=this.human.find(cardstring);
-        alert(card);
+        //alert(card);
         if(card==null){
             return;
         }
