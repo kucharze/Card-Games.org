@@ -48,16 +48,20 @@ class Fishpres {
     }
     
     fish(cardstring){
+        //this.computer.removeDups();
         if(!this.human.fish){
+            alert("The ask card is " + this.askCard);
             if(this.human.give(cardstring,this.askCard)){
-            this.computer.remove(this.computer.indexOf(this.askCard));
+                let index=this.computer.indexOf(this.askCard);
+                alert("Index = "+index);
+                this.computer.remove(this.computer.indexOf(this.askCard));
+                this.fview.displayComputerHand(this.computer.getHandCopy());
                 this.fview.displayMessage("Pick a card to ask for");
                 this.human.fish=true;
-            }else{
-                this.fview.displayWrongCardMsg();
             }
             return;
         }
+        
         alert("We are fishing");
         //alert(cardstring);
         let card=this.human.find(cardstring);
@@ -90,7 +94,8 @@ class Fishpres {
             this.fview.displayHumanHand(this.human.getHandCopy());
         }
         else{
-            alert("There are no Duplicats");
+            this.fview.displayMessage(document.getElementById("fishstatus").innerHTML + " No duplicates present");
+            //alert("There are no Duplicats");
         }
     }
 
@@ -106,6 +111,7 @@ class Fishpres {
         this.fview.eraseHands();
         this.deck=new Deck();
         this.moves=0;
+        this.fview.displayMessage("Welcome to Go Fish");
         
 	    this.deck.shuffle();
 	    this.deck.shuffle();

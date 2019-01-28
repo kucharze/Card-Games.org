@@ -99,17 +99,17 @@ div.statusBox {
     <center><p style="color: darkgreen">This site is currently under construction.  Some features might not work as intended.</p></center>
 
 <div class="tab">
-    <button class="tablinks" onclick="openCity(event, 'Account')">Create an account</button>
-    <button class="tablinks" onclick="openCity(event, 'Login')">Login</button>
-    <button class="tablinks" onclick="openCity(event, 'Eight')">Crazy Eights</button>
-    <button class="tablinks" onclick="openCity(event, 'Snap')">Snip Snap Snorum</button>
-    <button class="tablinks" onclick="openCity(event, 'Jack')">Blackjack</button>
-    <button class="tablinks" onclick="openCity(event, 'Match')">Matching</button>
-    <button class="tablinks" onclick="openCity(event, 'gofish')">Go fish</button>
-    <button class="tablinks" onclick="openCity(event, 'solitare')">Solitare</button>
-    <button class="tablinks" onclick="openCity(event, 'War')">War</button>
-    <button class="tablinks" onclick="openCity(event, 'sugestions')">Suggestions</button>
-    <button class="tablinks" onclick="openCity(event, 'boards')">Leaderboards</button>
+    <button class="tablinks" onclick="openTab(event, 'Account')">Create an account</button>
+    <button class="tablinks" onclick="openTab(event, 'Login')">Login</button>
+    <button class="tablinks" onclick="openTab(event, 'Eight')">Crazy Eights</button>
+    <button class="tablinks" onclick="openTab(event, 'Snap')">Snip Snap Snorum</button>
+    <button class="tablinks" onclick="openTab(event, 'Jack')">Blackjack</button>
+    <button class="tablinks" onclick="openTab(event, 'Match')">Matching</button>
+    <button class="tablinks" onclick="openTab(event, 'gofish')">Go fish</button>
+    <button class="tablinks" onclick="openTab(event, 'solitare')">Solitare</button>
+    <button class="tablinks" onclick="openTab(event, 'War')">War</button>
+    <button class="tablinks" onclick="openTab(event, 'sugestions')">Suggestions</button>
+    <button class="tablinks" onclick="openTab(event, 'boards')">Leaderboards</button>
 </div>
 
 <div id="Account" class="tabcontent">
@@ -169,32 +169,34 @@ div.statusBox {
     </div>
     
     <br><br>
-    <label id="reset">Click here to reset the game</label>
+    <input type="button" value="Reset the game" style="font-size: 18px" onclick="crazyReset()">
+    <br><br>
+    <input type="button" value="Online Mode" style="font-size: 18px">
+    <br><br>
     
     <button style="font-size: 20px" class="accordion">View Instructions</button>
     <div class="panel">
         <h2>Crazy Eights rules</h2>
         <p>Seven cards are dealt to each player.<br>
-The remaining cards of the deck are placed face down on the table.<br> 
-The top card is then turned face up to start the game.<br>
+            The remaining cards of the deck are placed face down on the table.<br> 
+            The top card is then turned face up to start the game.<br>
 
-Goal is to get rid of all your cards first.<br>
+            Goal is to get rid of all your cards first.<br>
 
-When it is your turn, you discard by matching number/rank or suit with the top card of the discard pile.<br>
+            When it is your turn, you discard by matching number/rank or suit with the top card of the discard pile.<br>
 
-If you are unable to match card or number, and you have an 8; you can play it.<br>
-If you do not have an 8 or matching card, you must draw a card from the stockpile.<br> 
+            If you are unable to match card or number, and you have an 8; you can play it.<br>
+            If you do not have an 8 or matching card, you must draw a card from the stockpile.<br> 
 
-When a player plays an 8, they must declare the suit that the next player is to play; that player must then follow the named suit or play another 8.<br>
+            When a player plays an 8, they must declare the suit that the next player is to play; that player must then follow the named suit or play another 8.<br>
 
-Example: a 6 clubs is currently on the pile. You can<br>
- - play any of the other 6s<br>
- - play any of the clubs<br>
- - play any 8 (You must then procede to declare a suit)<br> 
- - draw from the stockpile  ?(until willing and able to play one of the above)<br>
+            Example: a 6 clubs is currently on the pile. You can<br>
+            - play any of the other 6s<br>
+            - play any of the clubs<br>
+            - play any 8 (You must then procede to declare a suit)<br> 
+            - draw from the stockpile  ?(until willing and able to play one of the above)<br>
 
-The first player to empty their hand wins.<br>
-</p>   
+            The first player to empty their hand wins.<br></p>
     </div>
     
   <!--  <script src="test.js"></script>
@@ -218,6 +220,10 @@ The first player to empty their hand wins.<br>
         //Play one round of Crazy Eights against the computer
         var presenter = new Presenter();
         presenter.play();
+        
+        function crazyReset(){
+            presenter.resetGame();
+        }
         //presenter.solplay();</script>
     </div>
     
@@ -228,7 +234,8 @@ The first player to empty their hand wins.<br>
         <input type="button" id="stand" value="Stand" onclick=stand() style="font-size: 18px">
         <input type="button" id="hit" value="Hit" onclick=hit() style="font-size: 18px">
         <br><br>
-        <label id="jackreset">Click here to reset the game</label>
+        <input type="button" value="Reset the game" style="font-size: 18px" onclick="resetJack()">
+        <br><br>
         <button style="font-size: 20px" class="accordion">View Game Instructions</button>
         <div class="panel">
         <p><h2>Blackjack Rules</h2>
@@ -243,7 +250,6 @@ To beat the dealer the player must first not go over 21 and either outscore the 
 4.	After each player has had his turn, the dealer will turn over his hole card. If the dealer has 16 or less, then he will draw another card. A special situation is when the dealer has an ace and any number of cards totaling six points (known as a "soft 17"). At some tables, the dealer will also hit a soft 17.<br>
 5.	If the dealer goes over 21 points, then any player who didn't already bust will win.<br>
 6.	If the dealer does not bust, then the higher point total between the player and dealer will win.<br>
-7.	Winning wagers pay even money, except a winning player blackjack usually pays 3 to 2. Some casinos have been short-paying blackjacks, which is a rule strongly in the casino's favor.
 </p>
         </div>
         
@@ -261,16 +267,22 @@ To beat the dealer the player must first not go over 21 and either outscore the 
             function hit(){
                 jack.hit();
             }
+            
+            function resetJack(){
+                jack.resetGame();
+            }
         </script>
     </div>
     
     <div id="Snap" class="tabcontent">
-        <div id="jackstatus" class="statusBox">Welcome to Snip Snap Snorum</div>
+        <div id="snipstatus" class="statusBox">Welcome to Snip Snap Snorum</div>
         <div id="scpuhand"><img src="Images/cardback.jpg"></div>
-        <div id="table"><img src="Images/cardback.jpg"></div>
-        <div id="userhand"><img src="Images/cardback.jpg" title="start card"></div>
+        <br><br>
+        <div id="suserhand"><img src="Images/cardback.jpg" title="start card"></div>
         <br> <br>
-        <label style="font-size: 20px" id="fishreset">Click here to reset the game</label>
+        <input type="button" value="Reset the game" style="font-size: 18px" onclick="snipReset()">
+        <br><br>
+        <input type="button" value="Online Mode" style="font-size: 18px">
         <br><br>
         <button style="font-size: 20px" class="accordion">View Instructions</button>
         <div class="panel">
@@ -284,12 +296,17 @@ To beat the dealer the player must first not go over 21 and either outscore the 
                 If they have another card of the same rank, they place it down too, saying "Snap". <br>
                 If they don't, play passes to the next player<br>
                 Whoever places the final card of that rank says "Snorem" and wins the right to start the next round with the card of their choice.<br>
-                Example: the first card played = 5 Clubs, the next card to be played = 5 Hearts, then 5 Diamonds, and 5 Spades.
-</p>
+                Example: the first card played = 5 Clubs, the next card to be played = 5 Hearts, then 5 Diamonds, and 5 Spades.</p>
             </div>
+        <script src="Snippres.js"></script>
+        <script src="Snipview.js"></script>
         <script>
-            //let jack=new Jackpres();
-            //jack.play();
+            let snip=new Snippres();
+            snip.play();
+            
+            function snipReset(){
+                snip.resetGame();
+            }
             
         </script>
     </div>
@@ -306,7 +323,8 @@ To beat the dealer the player must first not go over 21 and either outscore the 
         Otherwise flip them back.<br>
         Flip over all cards to win.</p>
         </div>
-        <label id="memreset">Click here to reset the game</label>
+        <BR><BR>
+        <input type="button" value="Reset the game" style="font-size: 18px">
      <section class="memory-game">
     <div class="memory-card" data-framework="apple1">
       <img class="front-face" src="cards/apple1.PNG" alt="card"  />
@@ -386,16 +404,25 @@ To beat the dealer the player must first not go over 21 and either outscore the 
     
     <div id="gofish" class="tabcontent">
         <div id="fishstatus" class="statusBox">Welcome to Go Fish</div>
-        <div id="cpuhand"><img src="Images/cardback.jpg"></div>
+        <div id="fcpuhand"><img src="Images/cardback.jpg"></div>
         <div id="cards"><img src="Images/cardback.jpg"></div>
         <div id="fuserhand"><img src="Images/cardback.jpg" title="start card"></div>
         <input type="button" id="dups" value="Remove all duplicates from hand" onclick="dups()">
         <input type="button" value="Say No" id="No" onclick="no()">
         <br> <br>
-        <label style="font-size: 20px" id="gofishreset">Click here to reset the game</label>
+        <input type="button" value="Reset the game" style="font-size: 18px" onclick="fishRes()">
+        <br><br>
+        <input type="button" value="Online Mode" style="font-size: 18px">
+        <br><br>
         <button style="font-size: 20px" class="accordion">View Instructions</button>
         <div class="panel">
-            <p>Instructions to go here</p> 
+            <h2>Go Fish</h2>
+            <p>Each Player starts out with 7 cards<br>
+            If you have duplicate cards in your hand, you may remove those cards.<br>
+            You can ask another player if they have a card matching one in your hand.<br>
+            If they have that card, both you and your opponent place that card down.<br>
+            If you don't you draw a card.<br>
+            The first player to get rid of all the cards in their hand wins.</p>
         </div>
         
         <script src="Fishpres.js"></script>
@@ -413,6 +440,10 @@ To beat the dealer the player must first not go over 21 and either outscore the 
                 alert("saying no");
                 fpres.sayNo();
             }
+            
+            function fishRes(){
+                fpres.resetGame();
+            }
         </script>
     </div>
     
@@ -426,6 +457,7 @@ To beat the dealer the player must first not go over 21 and either outscore the 
         <div id="soldecks"><img src="Images/cardback.png"><img src="Images/cardback.png"><img src="Images/cardback.png"><img src="Images/cardback.png"></div>
         <br>
         <label id="solreset" style="font-size: 25px">Click here to reset the game</label>
+        <input type="button" value="Reset the game">
         <button style="font-size: 20px" class="accordion">View Instructions</button>
         <div class="panel">
             <h2>Solitare</h2>
@@ -452,6 +484,7 @@ To beat the dealer the player must first not go over 21 and either outscore the 
     <input type="button" onclick="deal()" value="Play a Round">
     <br>
     <label id="warreset">Click here to reset the game</label>
+    <input type="button" value="Reset the game">
     <button style="font-size: 20px" class="accordion">View Instructions</button>
         <div class="panel">
             <h2>War</h2>
@@ -496,6 +529,8 @@ If the face-up cards are again equal then the battle repeats with another set of
     <select id="leaderboards" name="Leaderboards">
         <option value="none">Select a leaderboard</option>
         <option>Crazy Eights</option>
+        <option>Snip Snap Snorum</option>
+        <option>BlackJack</option>
         <option>Matching</option>
         <option>Go Fish</option>
         <option>Solitare</option>
@@ -508,7 +543,7 @@ If the face-up cards are again equal then the battle repeats with another set of
 </div>
     
 <script>
-function openCity(evt, cityName) {//Code for opening tabs
+function openTab(evt, cityName) {//Code for opening tabs
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
@@ -520,7 +555,7 @@ function openCity(evt, cityName) {//Code for opening tabs
     }
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
-    evt.currentTarget.className += " active";
+    //evt.currentTarget.className += " active";
 }
 </script>
         <script>

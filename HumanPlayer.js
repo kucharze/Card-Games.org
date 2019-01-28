@@ -58,21 +58,12 @@ class HumanPlayer extends Player {
         }
     }
     
-    removeDups(){
-        let hand=this.getHandCopy();
-        for(let i=0; i<hand.length; i++){
-            for(let j=(i+1); j<hand.length; j++){
-                if(hand[i].getValue() == hand[j].getValue()){
-                    this.remove(this.list.indexOf(hand[i]));
-                    this.remove(this.list.indexOf(hand[j]));
-                }
-            }
-        }
-    }
-    
     give(cardString, comCard){
         let card=this.find(cardString);
-        if((card==null || !card.getValue == comCard.getValue)){
+        alert("We are inside give");
+        //alert("Card:"+card);
+        //alert("comCard:"+comCard);
+        if((card==null || (card.getValue() != comCard.getValue()))){
            this.view.displayWrongCardMsg(cardString);
             return false;
         }

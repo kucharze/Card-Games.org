@@ -10,16 +10,14 @@ class Fishview {
     this.topCard = null;
     this.topCardString = "";
     this.errorString = "";
-        document.getElementById("gofishreset").addEventListener("click", function(){presenter.resetGame();});
     
         document.getElementById("fuserhand").addEventListener("click",function(){presenter.fish(event.target.title);});
         
         //document.getElementById("cards").addEventListener("click",function(){presenter.cardPicked();});
-    //document.getElementById("yourHand").addEventListener("click",function(){presenter.cardSelected(event.target.title);});
   }
 
   displayComputerHand(hand){
-     let cpu = document.getElementById("cpuhand");
+     let cpu = document.getElementById("fcpuhand");
      while(cpu.hasChildNodes()){
 	   cpu.removeChild(cpu.lastChild);
       }
@@ -49,8 +47,8 @@ class Fishview {
   }
     
     eraseHands(){
-        let human=document.querySelector("#yourHand");
-        let computer=document.querySelector("#myHand");
+        let human=document.getElementById("fuserhand");
+        let computer=document.getElementById("fcpuhand");
         while(human.hasChildNodes()){
             human.removeChild(human.lastChild);
         }
@@ -84,7 +82,7 @@ class Fishview {
    }
     
     displayWrongCardMsg(){
-	   alert("Null card is being played");
+	   alert("You cannot play that card");
    }
 
 }

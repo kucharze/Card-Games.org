@@ -121,20 +121,6 @@ class ComputerPlayer extends Player{
             }
         }
     }
-    
-    removeDups(){
-        let hand=this.getHandCopy();
-        for(var i=0; i<hand.length-1; i++){//check for present matches
-            for(var j=i+1; j<hand.length-1; j++){
-                if(hand[i]=hand[j]){
-                    this.pile.acceptACard(hand[i]);
-                    this.pile.acceptACard(hand[j]);
-                    this.remove(i);
-                    this.remove(j);
-                }
-            }
-        }
-    }
   
     fish(){
         let hand=this.getHandCopy();

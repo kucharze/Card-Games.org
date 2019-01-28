@@ -69,7 +69,8 @@ class Player {
    * this player's hand.
    */
   remove(i) {
-    this.list.splice(i,1);
+      //alert("Removing a card");
+     this.list.splice(i,1);
   }
     
     findValue(cardvalue){
@@ -107,8 +108,22 @@ class Player {
    * Return index of given Card object, or -1 if card not in hand.
    */
   indexOf(card) {
-    return this.list.indexOf(card);
+      //alert("Finding index of card");
+     return this.list.indexOf(card);
   }
+    
+  removeDups(){
+        let hand=this.getHandCopy();
+        for(let i=0; i<hand.length; i++){
+            for(let j=(i+1); j<hand.length; j++){
+                if(hand[i].getValue() == hand[j].getValue()){
+                    this.remove(this.list.indexOf(hand[i]));
+                    this.remove(this.list.indexOf(hand[j]));
+                    break;
+                }
+            }
+        }
+    }
   /**
    * Return copy of this player's hand (array of Card objects).
    * Changes to the returned array will not affect the Player's hand.
