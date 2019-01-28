@@ -9,10 +9,8 @@ class Snipview {
     this.topCard = null;
     this.topCardString = "";
     //this.errorString = "";
-        
-    //document.getElementById("deck").addEventListener("click", function(){presenter.cardPicked();})
-    //document.getElementById("suitPicker").addEventListener("click", function() {presenter.suitPicked(event.target.id);});
-    //document.getElementById("yourHand").addEventListener("click",function(){presenter.cardSelected(event.target.title);});
+    
+    document.getElementById("suserhand").addEventListener("click",function(){presenter.cardSelected(event.target.title);});
   }
 
   announceComputerWinner(){
@@ -72,50 +70,27 @@ class Snipview {
 
   //display the top card of the pile
   displayPileTopCard(card){
-	 let table=document.querySelector("#table");
-	 table.removeChild(document.getElementById("pile"));
-	 let pile = document.getElementById("pile")
+	 let table=document.getElementById("stable");
+	 table.removeChild(table.lastChild);
+	 let pile = document.getElementById("spile")
      this.topCard=card;
 	 let image=document.createElement("img");
-	 image.src ="./Images/"+card.toString()+".png";
+      if(card==null){
+          image.src ="./Images/cardback.jpg";
+      }else{
+          image.src ="./Images/"+card.toString()+".png";
+          image.title=this.topCard.getValue()+this.topCard.getSuit();
+      }
+	 
 	 image.id="pile";
-	 image.title=this.topCard.getValue()+this.topCard.getSuit();
 	 image.class="card positionable";
 	 image.style="left: "+  (15*2) + " px; z-index:" + 2 +"";
 	 table.appendChild(image);
   }
-
-//makes the suit picker vissible
-  displaySuitPicker(){
-     document.getElementById("suitPicker").style= " display: block";
-   }
-
-   displayWrongCardMsg(cardstring){
-       let message=document.getElementById("status");
-       message.innerHTML="Can't play " +cardstring+", try again";
-   }
-
-  //makes the suit picker invisible again
-   undisplaySuitPicker(){
-     document.getElementById("suitPicker").style= " display: none";
-   }
     
-    displaySuit(suitstring){
-        let suit=document.getElementById("status");
-        if(suitstring=="h"){
-            suit.innerHTML="The suit is now Hearts";
-        }
-        if(suitstring=="d"){
-            suit.innerHTML="The suit is now Diamonds";
-        }
-        if(suitstring=="c"){
-            suit.innerHTML="The suit is now Clubs";
-        }
-        if(suitstring=="s"){
-            suit.innerHTML="The suit is now Spades";
-        }
-        
-        //suit.innerHTML="The suit is now " +suitstring;
+    displayMessage(message){
+        let mes=document.getElementById("snipstatus");
+        mes.innerHTML=message;
     }
 
 }
