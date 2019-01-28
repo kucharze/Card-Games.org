@@ -9,7 +9,6 @@ class View {
     this.topCard = null;
     this.topCardString = "";
     //this.errorString = "";
-    document.getElementById("reset").addEventListener("click", function(){presenter.resetGame();})
         
     document.getElementById("deck").addEventListener("click", function(){presenter.cardPicked();})
     document.getElementById("suitPicker").addEventListener("click", function() {presenter.suitPicked(event.target.id);});

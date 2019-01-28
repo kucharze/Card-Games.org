@@ -8,23 +8,6 @@ class Jackview {
     this.jpres = jpres;
     this.topCard = null;
     this.topCardString = "";
-    //document.getElementById("reset").addEventListener("click", function(){presenter.resetGame();})
-        
-    //document.getElementById("JDeck").addEventListener("click", function(){jpres.hit();});
-    document.getElementById("jackreset").addEventListener("click", function(){jpres.resetGame();});
-    //document.getElementById("playerhand").addEventListener("click",function(){presenter.cardSelected(event.target.title);});
-  }
-
-  announceComputerWinner(){
-    let CPUwinner = document.getElementById("announcer");
-    CPUwinner.textContent="Dealer wins. Thanks for being a good loser";
-    CPUwinner.style="display: block";
-  }
-
-  announceHumanWinner(){
-    let humanwin = document.getElementById("announcer");
-    humanwin.textContent="Congradulations! You win!";
-    humanwin.style="display: block";
   }
 
   displayComputerHand(hand){
@@ -69,26 +52,6 @@ class Jackview {
         mes.innerHTML=message;
     }
     
-  /**
-   * Block user from playing.
-   */
-  blockPlay() {
-    // Capture and ignore all clicks
-      document.getElementById("JDeck").addEventListener("click", function(){jpres.hit();});
-    //document.body.addEventListener("click", this.clickBlocker, true);
-    // Dim the cards to indicate that play is blocked.
-    //this.allCardsDiv.style.opacity = 0.5;
-  }
-  /**
-   * Unblock user from playing.
-   */
-  unblockPlay() {
-    // Remove capturing listener
-    document.getElementById("JDeck").addEventListener("click", function(){jpres.hit();});
-    // Undim the cards to indicate that play is no longer blocked.
-    //this.allCardsDiv.style.opacity = 1.0;
-  }
-    //*/
     eraseHands(){
         let human=document.getElementById("playerhand");
         let computer=document.getElementById("dealerhand");
