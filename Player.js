@@ -4,7 +4,7 @@
  */
 class Player {
   constructor(deck) {
-
+      this.i=0;
     /** This player's hand. */
     this.list = new Array();
 
@@ -69,7 +69,8 @@ class Player {
    * this player's hand.
    */
   remove(i) {
-      //alert("Removing a card");
+      alert("Removing a card "+i);
+      this.i++;
      this.list.splice(i,1);
   }
     
