@@ -68,18 +68,18 @@ class Snippres {
  }
     
     comTurn(){
-        alert("Passing play to the computer");
+        //alert("Passing play to the computer");
         while(true){
             if(!this.snip && !this.snap){
                 alert("snip");
                 let pcard=this.pile.getTopCard();
                 let hand=this.cpu.getHandCopy();
                 alert("pcard: "+pcard);
-                alert("hand card: "+hand[1]);
+                //alert("hand card: "+hand[1]);
                 this.pile.acceptACard(hand[1]);
                 this.cpu.remove(1);
                 this.sview.displayComputerHand(this.cpu.getHandCopy());
-                this.sview.displayPileTopCard(this.pile.acceptACard());
+                this.sview.displayPileTopCard(this.pile.getTopCard());
                 this.snip=true;
                 this.sview.displayMessage("Snip");
                 this.cpu.played=true;
@@ -97,12 +97,12 @@ class Snippres {
                         alert("can play");
                         this.cpu.played=true;
                         alert("pcard: "+pcard);
-                        alert("hand card: "+hand[i]);
+                        //alert("hand card: "+hand[i]);
                         //com=hand[i];
                         this.pile.acceptACard(hand[i]);
                         this.cpu.remove(this.cpu.indexOf(hand[i]));
                         this.sview.displayComputerHand(this.cpu.getHandCopy());
-                        this.sview.displayPileTopCard(this.pile.acceptACard());
+                        this.sview.displayPileTopCard(this.pile.getTopCard());
                         this.snap=true;
                         this.sview.displayMessage("Snap");
                         break;
@@ -128,13 +128,15 @@ class Snippres {
                         this.cpu.played=true;
                         //com=hand[i];
                         alert("pcard: "+pcard);
-                        alert("hand card: "+hand[i]);
+                        //alert("hand card: "+hand[i]);
                         this.pile.acceptACard(hand[i]);
                         this.cpu.remove(this.cpu.indexOf(hand[i]));
                         this.sview.displayComputerHand(this.cpu.getHandCopy());
-                        this.sview.displayPileTopCard(this.pile.acceptACard());
+                        this.sview.displayPileTopCard(this.pile.getTopCard());
                         this.snip=false;
                         this.snap=false;
+                        alert("pcard after: "+this.pile.getTopCard());
+                        //alert("hand card: "+hand[i]);
                         this.sview.displayMessage("Snorum");
                         this.cpu.played=true;
                         //alert("reset");
