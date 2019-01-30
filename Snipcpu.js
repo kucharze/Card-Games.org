@@ -13,9 +13,16 @@ class Snipcpu extends Player{
       this.deck = deck;
       this.pile = pile;
       this.view = view;
+      this.played=false;
   }
     
-    hasCard(card){
+    addCards(){
+        for(var i=0; i<12; i++){
+            this.list.push(this.deck.dealACard());
+        }
+    }
+    
+    hasCard(card){//checks to see if the computer has a given card
         let hand= this.getHandCopy();
         
         for(var i=0; i<hand.length; i++){
@@ -23,7 +30,6 @@ class Snipcpu extends Player{
                 return true;
             }
         }
-        
         return false;
     }
     

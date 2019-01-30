@@ -47,17 +47,6 @@ class Player {
         }
         return null;
     }
-    
-    hasValue(value){
-        let hand=this.getHandCopy();
-        
-        for(var i=0; i<hand.length; i++){
-            if(hand[i].getValue()==value){
-                return true;
-            }
-        }
-        return false;
-    }
   /**
    * Add the given Card object to this player's hand.
    */
@@ -69,7 +58,7 @@ class Player {
    * this player's hand.
    */
   remove(i) {
-      alert("Removing a card "+i);
+      //alert("Removing a card "+i);
       this.i++;
      this.list.splice(i,1);
   }

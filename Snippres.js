@@ -15,20 +15,17 @@ class Snippres {
         this.snip=false;
         this.snap=false;
         
-        
 	    this.pile = new Pile();
 	    //this.pile.acceptACard(this.deck.dealACard());
 	    this.sview = new Snipview(this);
-	    this.human=new HumanPlayer(this.deck, this.pile, this.view);
-	    this.snipcpu=new Snipcpu(this.deck, this.pile, this.view);
+	    this.human=new Sniphuman(this.deck, this.pile, this.view);
+	    this.cpu=new Snipcpu(this.deck, this.pile, this.view);
     }
 
 //takes the string for a card and determines if the player's turn is over
  cardSelected(cardString){
-    // alert("snip");
-     //alert("The pile is empty "+this.pile.isEmpty());
-     alert(cardString);
-     //let card=this.human.find(cardString);
+     //alert("snip");
+     //alert(cardString);
      let card=this.pile.getTopCard();
      let hum=this.human.find(cardString);
      if(!this.snip){
@@ -73,31 +70,97 @@ class Snippres {
     comTurn(){
         alert("Passing play to the computer");
         while(true){
-            let pcard=this.pile.getTopCard();
-            if(!this.snip){
+            if(!this.snip && !this.snap){
                 alert("snip");
-                let hand=this.snipcpu.getHandCopy();
-                this.pile.acceptACard(hand[0]);
-                this.snipcpu.remove(0);
-                this.sview.displayComputerHand(this.snipcpu.getHandCopy());
+                let pcard=this.pile.getTopCard();
+                let hand=this.cpu.getHandCopy();
+                alert("pcard: "+pcard);
+                alert("hand card: "+hand[1]);
+                this.pile.acceptACard(hand[1]);
+                this.cpu.remove(1);
+                this.sview.displayComputerHand(this.cpu.getHandCopy());
                 this.sview.displayPileTopCard(this.pile.acceptACard());
+                this.snip=true;
+                this.sview.displayMessage("Snip");
+                this.cpu.played=true;
+                
             }
             else if(this.snip && !this.snap){
                 alert("snap");
+                let pcard=this.pile.getTopCard();
+                let hand=this.cpu.getHandCopy();
+                let com=null;
+                //alert(hand.length)
+                for(var i=0; i<hand.length; i++){
+                    //alert(hand[i]);
+                    if(hand[i].getValue() == this.pile.getTopCard().getValue()){
+                        alert("can play");
+                        this.cpu.played=true;
+                        alert("pcard: "+pcard);
+                        alert("hand card: "+hand[i]);
+                        //com=hand[i];
+                        this.pile.acceptACard(hand[i]);
+                        this.cpu.remove(this.cpu.indexOf(hand[i]));
+                        this.sview.displayComputerHand(this.cpu.getHandCopy());
+                        this.sview.displayPileTopCard(this.pile.acceptACard());
+                        this.snap=true;
+                        this.sview.displayMessage("Snap");
+                        break;
+                    }
+                }
+                
+                if(!this.cpu.played){
+                    this.snip=false;
+                    this.snap=false;
+                    break;
+                    this.cpu.played=false;
+                }
             }
             else if(this.snip && this.snap){
                 alert("snorum");
+                let pcard=this.pile.getTopCard();
+                let hand=this.cpu.getHandCopy();
+                let com=null;
+                for(var i=0; i<hand.length; i++){
+                    //alert(hand[i]);
+                    if(hand[i].getValue() == this.pile.getTopCard().getValue()){
+                        alert("can play");
+                        this.cpu.played=true;
+                        //com=hand[i];
+                        alert("pcard: "+pcard);
+                        alert("hand card: "+hand[i]);
+                        this.pile.acceptACard(hand[i]);
+                        this.cpu.remove(this.cpu.indexOf(hand[i]));
+                        this.sview.displayComputerHand(this.cpu.getHandCopy());
+                        this.sview.displayPileTopCard(this.pile.acceptACard());
+                        this.snip=false;
+                        this.snap=false;
+                        this.sview.displayMessage("Snorum");
+                        this.cpu.played=true;
+                        //alert("reset");
+                        break;
+                    }
+                }
+                
+                if(!this.cpu.played){
+                    this.snip=false;
+                    this.snap=false;
+                    break;
+                    this.cpu.played=false;
+                }
             }
             
-           // if()
         }
+        this.sview.displayMessage("Your turn");
     }
 
 //Sets up the start of the game
  play(){//Set up for playing crazy eights
      //alert("Loading up snip snap snorum");
+     this.human.addCards();
+     this.cpu.addCards();
      this.sview.displayPileTopCard(null);
-     this.sview.displayComputerHand(this.snipcpu.getHandCopy());
+     this.sview.displayComputerHand(this.cpu.getHandCopy());
      this.sview.displayHumanHand(this.human.getHandCopy());
      return;
  }
@@ -117,15 +180,14 @@ class Snippres {
 	    this.pile = new Pile();
 	    //this.pile.acceptACard(this.deck.dealACard());
 	    
-        this.human = new HumanPlayer(this.deck, this.pile, this.view);
-	    this.computer = new ComputerPlayer(this.deck, this.pile, this.view);
+        this.human = new Sniphuman(this.deck, this.pile, this.view);
+	    this.cpu = new Snipcpu(this.deck, this.pile, this.view);
+        this.human.addCards();
+        this.cpu.addCards();
         this.sview.displayPileTopCard(this.pile.getTopCard());
-        this.sview.displayComputerHand(this.computer.getHandCopy());
+        this.sview.displayComputerHand(this.cpu.getHandCopy());
         this.sview.displayHumanHand(this.human.getHandCopy());
-        //this.view.undisplaySuitPicker();
-        //let suit=document.getElementById("status");
-        //suit.innerHTML="Welcome to Crazy Eights";
-        //this.computer.countCards();
+        
         return;
     }
 
