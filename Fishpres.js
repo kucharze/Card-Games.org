@@ -36,12 +36,15 @@ class Fishpres {
     }
     
     sayNo(){
-        if(this.human.hasValue(this.askCard.getValue())){
-            alert("You have a card that you can play");
+        if(this.human.findValue(this.askCard.getValue())!=null ){
+            this.fview.displayMessage("You have a "+this.askCard.getValue()+ " that you can play");
             return;
         }
         else{
             this.computer.cardPicked();
+            if(this.computer.hasDuplicate()){
+                this.computer.removeDups();
+            }
         }
         this.human.fish=true;
         this.fview.displayMessage("Pick a card to ask for");
@@ -50,19 +53,26 @@ class Fishpres {
     fish(cardstring){
         //this.computer.removeDups();
         if(!this.human.fish){
+            alert("Recieving");
             alert("The ask card is " + this.askCard);
             if(this.human.give(cardstring,this.askCard)){
                 let index=this.computer.indexOf(this.askCard);
                 alert("Index = "+index);
                 this.computer.remove(this.computer.indexOf(this.askCard));
                 this.fview.displayComputerHand(this.computer.getHandCopy());
+                
+                if(this.computer.isHandEmpty()){
+                    this.fview.displayMessage("I win! Thanks for being a good loser");
+                    return;
+                }
+                
                 this.fview.displayMessage("Pick a card to ask for");
                 this.human.fish=true;
             }
             return;
         }
         
-        alert("We are fishing");
+        alert("Fishing");
         //alert(cardstring);
         let card=this.human.find(cardstring);
         //alert(card);
@@ -82,6 +92,9 @@ class Fishpres {
         
         this.fview.displayHumanHand(this.human.getHandCopy());
         this.fview.displayComputerHand(this.computer.getHandCopy());
+        if(this.human.isHandEmpty()){
+            this.fview.displayMessage("Congradulations! You win!!!");
+        }
         this.human.fish=false;
         this.comTurn();
         //this.completeBothTurns();

@@ -47,6 +47,29 @@ class Player {
         }
         return null;
     }
+    
+    //remove duplicate cards from hand
+    removeDups(){
+        let removed=false;
+        let hand=this.getHandCopy();
+        while(this.hasDuplicate()){
+            for(let i=0; i<hand.length; i++){
+                for(let j=(i+1); j<hand.length; j++){
+                    if(hand[i].getValue() == hand[j].getValue()){
+                        this.remove(this.list.indexOf(hand[i]));
+                        this.remove(this.list.indexOf(hand[j]));
+                        removed=true;
+                        break;
+                    }
+                    if(removed){
+                        removed=false;
+                        break;
+                    }
+                }
+            }
+        }
+        
+    }
   /**
    * Add the given Card object to this player's hand.
    */
@@ -102,18 +125,6 @@ class Player {
      return this.list.indexOf(card);
   }
     
-  removeDups(){
-        let hand=this.getHandCopy();
-        for(let i=0; i<hand.length; i++){
-            for(let j=(i+1); j<hand.length; j++){
-                if(hand[i].getValue() == hand[j].getValue()){
-                    this.remove(this.list.indexOf(hand[i]));
-                    this.remove(this.list.indexOf(hand[j]));
-                    break;
-                }
-            }
-        }
-    }
   /**
    * Return copy of this player's hand (array of Card objects).
    * Changes to the returned array will not affect the Player's hand.

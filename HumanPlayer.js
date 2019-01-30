@@ -60,7 +60,7 @@ class HumanPlayer extends Player {
     
     give(cardString, comCard){
         let card=this.find(cardString);
-        alert("We are inside give");
+        //alert("We are inside give");
         //alert("Card:"+card);
         //alert("comCard:"+comCard);
         if((card==null || (card.getValue() != comCard.getValue()))){
