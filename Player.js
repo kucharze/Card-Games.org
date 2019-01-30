@@ -70,7 +70,7 @@ class Player {
             if (this.list[i].getValue() == cardvalue) {
                 card = this.list[i];
             }
-        i++;
+            i++;
         }
         return card;
     }

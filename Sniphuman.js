@@ -8,10 +8,11 @@ class Sniphuman extends Player {
         this.deck = deck;
 	    this.pile = pile;
 	    this.view = view;
+        this.played=false;
     }
 
     addCards(){
-        for(var i=0; i<4; i++){
+        for(var i=0; i<15; i++){
             this.list.push(this.deck.dealACard());
         }
     }
