@@ -98,9 +98,9 @@ class Snippres {
                 this.snipview.displayMessage("Snip");
                 this.cpu.played=true;
                 if(this.cpu.isHandEmpty()){
-                        this.snipview.displayMessage("I win. Thanks for being a good loser");
-                        document.getElementById("passturn").disabled=true;
-                    break;
+                    this.snipview.displayMessage("CPU wins!! Rematch?");
+                    document.getElementById("passturn").disabled=true;
+                    return;
                 }
                 
             }
@@ -130,9 +130,9 @@ class Snippres {
                 }
                 
                 if(this.cpu.isHandEmpty()){
-                        this.snipview.displayMessage("I win. Thanks for being a good loser");
+                        this.snipview.displayMessage("CPU wins!! Rematch?");
                         document.getElementById("passturn").disabled=true;
-                    break;
+                    return;
                 }
                 
                 if(!this.cpu.played){
@@ -174,9 +174,9 @@ class Snippres {
                 }
                 
                         if(this.cpu.isHandEmpty()){
-                            this.snipview.displayMessage("I win. Thanks for being a good loser");
+                            this.snipview.displayMessage("CPU wins!! Rematch?");
                             document.getElementById("passturn").disabled=true;
-                            break;
+                            return;
                         }
                 
                 if(!this.cpu.played){

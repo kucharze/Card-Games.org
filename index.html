@@ -106,7 +106,7 @@ div.statusBox {
     <button class="tablinks" onclick="openTab(event, 'Jack')">Blackjack</button>
     <button class="tablinks" onclick="openTab(event, 'Match')">Matching</button>
     <button class="tablinks" onclick="openTab(event, 'gofish')">Go fish</button>
-    <button class="tablinks" onclick="openTab(event, 'solitare')">Solitare</button>
+    <button class="tablinks" onclick="openTab(event, 'solitare')">Spider Solitare</button>
     <button class="tablinks" onclick="openTab(event, 'War')">War</button>
     <button class="tablinks" onclick="openTab(event, 'sugestions')">Suggestions</button>
     <button class="tablinks" onclick="openTab(event, 'boards')">Leaderboards</button>
@@ -417,7 +417,7 @@ To beat the dealer the player must first not go over 21 and either outscore the 
         <div id="cards"><img src="Images/cardback.jpg"></div>
         <div id="fuserhand"><img src="Images/cardback.jpg" title="start card"></div>
         <input type="button" id="dups" value="Remove all duplicates from hand" onclick="dups()">
-        <input type="button" value="Say No" id="No" onclick="no()">
+        <input type="button" value="sayno" id="No" onclick="no()">
         <br> <br>
         <input type="button" value="Reset the game" style="font-size: 18px" onclick="fishRes()">
         <br><br>
@@ -457,7 +457,7 @@ To beat the dealer the player must first not go over 21 and either outscore the 
     </div>
     
     <div id="solitare" class="tabcontent">
-        <div id="status" class="statusBox">Welcome to Solitare</div>
+        <div id="status" class="statusBox">Welcome to Spider Solitare</div>
         <div id="row1" class="row1"><img src="Images/cardback.jpg"></div>
         <div id="row2"><img src="Images/cardback.jpg"></div>
         <div id="row3"><img src="Images/cardback.jpg"></div>
@@ -465,8 +465,8 @@ To beat the dealer the player must first not go over 21 and either outscore the 
         <div id="row5"><img src="Images/cardback.jpg"></div>
         <div id="soldecks"><img src="Images/cardback.png"><img src="Images/cardback.png"><img src="Images/cardback.png"><img src="Images/cardback.png"></div>
         <br>
-        <label id="solreset" style="font-size: 25px">Click here to reset the game</label>
-        <input type="button" value="Reset the game">
+        <input type="button" value="Reset the game" style="font-size: 18px" onclick="solreset()">
+        <br><br>
         <button style="font-size: 20px" class="accordion">View Instructions</button>
         <div class="panel">
             <h2>Solitare</h2>
@@ -480,6 +480,10 @@ To beat the dealer the player must first not go over 21 and either outscore the 
         //Play one round of Solitare
         var spres = new Solpres();
         spres.play();
+        
+        function solreset(){
+            spres.resetGame();
+        }
         </script>
     </div>
 

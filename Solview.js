@@ -11,8 +11,8 @@ class Solview {
     this.topCardString = "";
     this.errorString = "";
     
-    document.getElementById("solreset").addEventListener("click", function(){presenter.resetGame();});
-    //document.getElementById("yourHand").addEventListener("click", function(){presenter.cardSelected(event.target.title);});
+    document.getElementById("soldecks").addEventListener("click", function(){presenter.dealNewCards();});
+    //document.getElementById("soldecks").addEventListener("click", function(){presenter.cardSelected(event.target.title);});
   }
 
   announceHumanWinner(){
@@ -43,7 +43,23 @@ class Solview {
                 image.style="left: "+ (15*i) + " px; z-index:" + i +"";
                 card.appendChild(image);
             }
-
+        }
+    }
+    
+    eraseDeck(){
+        let decks=document.getElementById("soldecks");
+        decks.removeChild(decks.lastChild);
+    }
+    
+    addDecks(decks){
+        let row=document.getElementById("soldecks");
+        while(decks>0){
+            let image=document.createElement("img");
+            image.src ="./Images/cardback.png";
+	        image.class="card positionable";
+            image.style="left: "+ (15) + " px; z-index:" + 1 +"";
+            row.appendChild(image);
+            decks--;
         }
     }
     

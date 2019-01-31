@@ -63,6 +63,8 @@ class Fishpres {
                 
                 if(this.computer.isHandEmpty()){
                     this.fview.displayMessage("I win! Thanks for being a good loser");
+                    document.getElementById("dups").disabled=true;
+                    document.getElementById("sayno").disabled=true;
                     return;
                 }
                 
@@ -86,7 +88,9 @@ class Fishpres {
             this.human.remove(this.human.indexOf(card));
         }
         if(this.human.isHandEmpty()){
-            this.fview.displayMessage("Player wins");
+            this.fview.displayMessage("Congradulations you win!!!");
+            document.getElementById("dups").disabled=true;
+            document.getElementById("sayno").disabled=true;
             return;
         }
         
@@ -125,9 +129,11 @@ class Fishpres {
         this.deck=new Deck();
         this.moves=0;
         this.fview.displayMessage("Welcome to Go Fish");
+	    this.deck.shuffle();
+	    this.deck.shuffle();
         
-	    this.deck.shuffle();
-	    this.deck.shuffle();
+        document.getElementById("dups").disabled=false;
+        document.getElementById("sayno").disabled=false;
 	    
 	    this.pile = new Pile();
 	    //this.pile.acceptACard(this.deck.dealACard());

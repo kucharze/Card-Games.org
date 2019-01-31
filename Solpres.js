@@ -38,7 +38,7 @@ class Solpres {
        for(var i=0; i<this.row5.length-1; i++){
             this.row5[i].flip();
         }
-
+        this.decksadded=0;
     }
 
 //takes the string for a card and determines if the player's turn is over
@@ -54,6 +54,23 @@ class Solpres {
      
     return;
  }
+    
+    dealNewCards(){
+        this.row1.push(this.deck.dealACard());
+        this.row2.push(this.deck.dealACard());
+        this.row3.push(this.deck.dealACard());
+        this.row4.push(this.deck.dealACard());
+        this.row5.push(this.deck.dealACard());
+        
+        this.solview.displayRow(this.row1, 1);
+        this.solview.displayRow(this.row2, 2);
+        this.solview.displayRow(this.row3, 3);
+        this.solview.displayRow(this.row4, 4);
+        this.solview.displayRow(this.row5, 5);
+        
+        this.solview.eraseDeck();
+        this.decksadded++;
+    }
     
     find(cardString){
         for(var i=1; i<6; i++){
@@ -124,6 +141,8 @@ play(){//Set up the solitare game
         this.solview.displayRow(this.row3, 3);
         this.solview.displayRow(this.row4, 4);
         this.solview.displayRow(this.row5, 5);
+        this.solview.addDecks(this.decksadded);
+        this.decksadded=0;
         
         return;
     }
