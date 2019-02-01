@@ -38,7 +38,7 @@ class Solpres {
         for(var i=0; i<this.row4.length-1; i++){
             this.row4[i].flip();
         }
-       for(var i=0; i<this.row5.length-1; i++){
+        for(var i=0; i<this.row5.length-1; i++){
             this.row5[i].flip();
         }
         this.decksadded=0;
@@ -72,53 +72,61 @@ class Solpres {
             else{
                 ///*
                 if(this.actionRow=="row1"){
-                    while(c!=this.actionCard){
-                        c=this.row1.pop();
+                    for(var i=0; i<this.row1.length; i++){
+                        if(this.row1[i] == this.actionCard){
+                            this.row1.splice(i);
+                        }
                     }
-                    
                 }
                 else if(this.actionRow=="row2"){
-                    while(c!=this.actionCard){
-                        c=this.row2.pop();
+                    for(var i=0; i<this.row2.length; i++){
+                        if(this.row2[i] == this.actionCard){
+                            this.row2.splice(i);
+                        }
                     }
                 }
                 else if(this.actionRow=="row3"){
-                    while(c!=this.actionCard){
-                        c=this.row3.pop();
+                    for(var i=0; i<this.row3.length; i++){
+                        if(this.row3[i] == this.actionCard){
+                            this.row3.splice(i);
+                        }
                     }
                 }
                 else if(this.actionRow=="row4"){
-                    while(c!=this.actionCard){
-                        c=this.row4.pop();
+                    for(var i=0; i<this.row4.length; i++){
+                        if(this.row4[i] == this.actionCard){
+                            this.row4.splice(i);
+                        }
                     }
                 }
                 else if(this.actionRow=="row5"){
-                    while(c!=this.actionCard){
-                        c=this.row5.pop();
+                    for(var i=0; i<this.row5.length; i++){
+                        if(this.row5[i] == this.actionCard){
+                            this.row5.splice(i);
+                        }
                     }
                 }
                 //*/
                 
-                
                 if(row=="row1"){
                     this.row1.push(this.actionCard);
-                    this.solview.displayRow(this.row1, 1);
+                    
                 }
                 if(row=="row2"){
                     this.row2.push(this.actionCard);
-                    this.solview.displayRow(this.row2, 2);
+                    
                 }
                 if(row=="row3"){
                     this.row3.push(this.actionCard);
-                    this.solview.displayRow(this.row3, 3);
+                    
                 }
                 if(row=="row4"){
                     this.row4.push(this.actionCard);
-                    this.solview.displayRow(this.row4, 4);
+                    
                 }
                 if(row=="row5"){
                     this.row5.push(this.actionCard);
-                    this.solview.displayRow(this.row5, row5);
+                    
                 }
                 
                 
@@ -126,6 +134,12 @@ class Solpres {
             this.checkFlips();
             this.actionCard=null;
             this.actionRow=null;
+            
+            this.solview.displayRow(this.row1, 1);
+            this.solview.displayRow(this.row2, 2);
+            this.solview.displayRow(this.row3, 3);
+            this.solview.displayRow(this.row4, 4);
+            this.solview.displayRow(this.row5, 5);
         }
      }
      
@@ -187,6 +201,30 @@ class Solpres {
     }
     
     checkFlips(){
+        
+        
+        if(this.row1[this.row1.length-1].flipped){
+            this.row1[this.row1.length-1].flip();
+        }
+        
+        if(this.row2[this.row2.length-1].flipped){
+            this.row2[this.row2.length-1].flip();
+        }
+        
+        if(this.row3[this.row3.length-1].flipped){
+            this.row3[this.row3.length-1].flip();
+        }
+        
+        
+        if(this.row4[this.row4.length-1].flipped){
+            this.row4[this.row4.length-1].flip();
+        }
+        
+        if(this.row5[this.row5.length-1].flipped){
+            this.row5[this.row5.length-1].flip();
+        }
+        
+        /*
         for(var i = 0; i<this.row1.length; i++){
             if(!this.row1[i].flipped){
                 break;
@@ -241,14 +279,7 @@ class Solpres {
                 }
             }
         }
-    }
-    
-    removeCards(){
-        
-    }
-    
-    placeCards(){
-        
+        */
     }
 
 play(){//Set up the solitare game

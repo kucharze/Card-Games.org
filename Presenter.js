@@ -17,6 +17,8 @@ class Presenter {
         
         this.date=null;
         this.started=false;
+        this.min=0;
+        this.secs=0;
 	    this.pile = new Pile();
 	    this.pile.acceptACard(this.deck.dealACard());
 	    this.view = new View(this);
@@ -50,8 +52,17 @@ class Presenter {
      this.moves++;
     if(this.human.isHandEmpty()){
        alert("You won in this many moves:"+this.moves);
-        let elapsed=new Date() -this.date;
-        alert("You won in this much time "+elapsed);
+        let elapsed=new Date();
+        this.secs=elapsed - this.date;
+        this.secs/=1000;
+        this.secs=Math.round(this.secs);
+        alert("This many Seconds: "+this.secs);
+        while(this.secs>60){
+            alert("Making time conversions");
+            this.secs=this.secs-60;
+            this.min++;
+        }
+        alert("You won in this much time "+this.min + " minutes and "+this.secs+" seconds");
 	   this.view.announceHumanWinner();
 	   return;
     }
@@ -96,8 +107,7 @@ class Presenter {
         this.view.displayComputerHand(this.computer.getHandCopy());
         this.view.displayHumanHand(this.human.getHandCopy());
         this.view.undisplaySuitPicker();
-        let win = document.getElementById("announcer");
-        win.style="display: none";
+        
         let suit=document.getElementById("status");
         suit.innerHTML="Welcome to Crazy Eights";
         this.computer.countCards();
