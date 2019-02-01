@@ -416,8 +416,8 @@ To beat the dealer the player must first not go over 21 and either outscore the 
         <div id="fcpuhand"><img src="Images/cardback.jpg"></div>
         <div id="cards"><img src="Images/cardback.jpg"></div>
         <div id="fuserhand"><img src="Images/cardback.jpg" title="start card"></div>
-        <input type="button" id="dups" value="Remove all duplicates from hand" onclick="dups()">
-        <input type="button" value="sayno" id="No" onclick="no()">
+        <input type="button" id="dups" value="Remove all duplicates from hand" style="font-size: 18px" onclick="dups()">
+        <input type="button" value="Say No" id="No" style="font-size: 18px" onclick="no()">
         <br> <br>
         <input type="button" value="Reset the game" style="font-size: 18px" onclick="fishRes()">
         <br><br>
@@ -457,8 +457,8 @@ To beat the dealer the player must first not go over 21 and either outscore the 
     </div>
     
     <div id="solitare" class="tabcontent">
-        <div id="status" class="statusBox">Welcome to Spider Solitare</div>
-        <div id="row1" class="row1"><img src="Images/cardback.jpg"></div>
+        <div id="Solstatus" class="statusBox">Welcome to Spider Solitare</div>
+        <div id="row1"><img src="Images/cardback.jpg"></div>
         <div id="row2"><img src="Images/cardback.jpg"></div>
         <div id="row3"><img src="Images/cardback.jpg"></div>
         <div id="row4"><img src="Images/cardback.jpg"></div>
@@ -475,6 +475,7 @@ To beat the dealer the player must first not go over 21 and either outscore the 
         
         <script src="Solpres.js"></script>
         <script src="Solview.js"></script>
+        <script src="Soldeck.js"></script>
     <script>
     "use strict";
         //Play one round of Solitare

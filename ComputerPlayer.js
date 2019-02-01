@@ -127,20 +127,20 @@ class ComputerPlayer extends Player{
         //Randomly chose anumber between 0 and handsize -1
         let ran=Math.floor((Math.random() * (hand.length-1)) + 0);
         //ask human player for card of value that is the same as the card at the randomly chosen position position
-        
         return hand[ran];
     }
     
     give(card){
         let hand=this.getHandCopy();
-        for(var i=0; i<hand.length-1; i++){
+        for(var i=0; i<hand.length; i++){
+            //alert("Cards for computer to compare" + hand[i] + " " + card);
             if(hand[i].getValue()==card.getValue()){
                 this.pile.acceptACard(hand[i]);
                 this.remove(i);
+                this.view.displayComputerHand(this.getHandCopy());
                 return true;
             }
         }
-        
         return false;
     }
     

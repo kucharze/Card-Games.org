@@ -11,17 +11,20 @@ class Solpres {
         this.moves=0;
         this.actionCard=null;
         this.actionRow=null;
-        this.deck = new Deck();
+        this.deck = new Soldeck();
 	    this.deck.shuffle();
         this.deck.shuffle();
+        this.extra=new Soldeck();
+        this.extra.shuffle();
+        this.extra.shuffle();
 	    this.solview = new Solview(this);
         
         //arrays for each row of cards
-        this.row1=new Array(this.deck.dealACard(), this.deck.dealACard());
-        this.row2=new Array(this.deck.dealACard(), this.deck.dealACard());
-        this.row3=new Array(this.deck.dealACard(), this.deck.dealACard());
-        this.row4=new Array(this.deck.dealACard(), this.deck.dealACard());
-        this.row5=new Array(this.deck.dealACard(), this.deck.dealACard());
+        this.row1=new Array(this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard());
+        this.row2=new Array(this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard());
+        this.row3=new Array(this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard());
+        this.row4=new Array(this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard());
+        this.row5=new Array(this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard());
         
         for(var i=0; i<this.row1.length-1; i++){
             this.row1[i].flip();
@@ -44,12 +47,86 @@ class Solpres {
 //takes the string for a card and determines if the player's turn is over
 //if it is complete the cycle of the players turn and the humans turn
  cardSelected(cardString,row){
-     if(this.actionCard==null){
-         this.actionCard=cardString;
-         this.actionRow=row;
-     }else{
-        //let cards=find(actioncard);
-         //let cardn=find(cardString);
+     //alert(cardString);
+     let c=null;
+     if(cardString==""){//A face down card was clicked on
+         this.solview.displayMessage("That card is currently not flipped up");
+         return;
+     }
+     let card=this.find(cardString,row);
+         if(card==null){
+             alert("Error card is null");
+             return;
+         }
+     else{
+         if(this.actionCard==null){     
+            this.actionCard=card;
+            //alert("The action card is: "+this.actionCard);
+            this.actionRow=row
+            return;
+         
+        }else{
+            if(this.actionCard.sValue > card.sValue){
+                this.solview.displayMessage("That is an illegal move");
+            }
+            else{
+                ///*
+                if(this.actionRow=="row1"){
+                    while(c!=this.actionCard){
+                        c=this.row1.pop();
+                    }
+                    
+                }
+                else if(this.actionRow=="row2"){
+                    while(c!=this.actionCard){
+                        c=this.row2.pop();
+                    }
+                }
+                else if(this.actionRow=="row3"){
+                    while(c!=this.actionCard){
+                        c=this.row3.pop();
+                    }
+                }
+                else if(this.actionRow=="row4"){
+                    while(c!=this.actionCard){
+                        c=this.row4.pop();
+                    }
+                }
+                else if(this.actionRow=="row5"){
+                    while(c!=this.actionCard){
+                        c=this.row5.pop();
+                    }
+                }
+                //*/
+                
+                
+                if(row=="row1"){
+                    this.row1.push(this.actionCard);
+                    this.solview.displayRow(this.row1, 1);
+                }
+                if(row=="row2"){
+                    this.row2.push(this.actionCard);
+                    this.solview.displayRow(this.row2, 2);
+                }
+                if(row=="row3"){
+                    this.row3.push(this.actionCard);
+                    this.solview.displayRow(this.row3, 3);
+                }
+                if(row=="row4"){
+                    this.row4.push(this.actionCard);
+                    this.solview.displayRow(this.row4, 4);
+                }
+                if(row=="row5"){
+                    this.row5.push(this.actionCard);
+                    this.solview.displayRow(this.row5, row5);
+                }
+                
+                
+            }
+            this.checkFlips();
+            this.actionCard=null;
+            this.actionRow=null;
+        }
      }
      
     return;
@@ -72,29 +149,106 @@ class Solpres {
         this.decksadded++;
     }
     
-    find(cardString){
-        for(var i=1; i<6; i++){
-            if(i==1){
-                let row=this.row1;
+    find(cardString,rowNum){
+        //let r = null;
+        //let option=null;
+        let num=rowNum;
+        //alert("Cardstrings = "+cardString);
+        var r=null;
+        if(num == "row1"){
+            //alert("going for row 1");
+            r=this.row1;
+        }
+        else if(rowNum == "row2"){
+            //alert("going for row 2");
+            r=this.row2;
+        }
+        else if(rowNum=="row3"){
+            //alert("going for row 3");
+            r=this.row3;
+        }
+        else if(rowNum=="row4"){
+            //alert("going for row 4");
+            r=this.row4;
+        }
+        else if(rowNum=="row5"){
+            //alert("going for row 5");
+            r=this.row5;
+        }
+        
+        //alert("r= "+r);
+        for(var i=0; i<r.length; i++){
+            //alert(i+" "+r[i].toString());
+            if(r[i].toString()==cardString){
+                return r[i];
             }
-            if(i==2){
-                let row=this.row2;
+        }
+        return null;
+    }
+    
+    checkFlips(){
+        for(var i = 0; i<this.row1.length; i++){
+            if(!this.row1[i].flipped){
+                break;
             }
-            if(i==3){
-                let row=this.row3;
-            }
-            if(i==4){
-                let row=this.row4;
-            }
-            if(i==5){
-                let row=this.row5;
-            }
-            for(var j=0; j<row.length-1; j++){
-                if(row[j].toString()==cardString){
-                    return row[j];
+            if(i=this.row1.length-1){
+                if(this.row1[i].flipped){
+                    this.row1[i].flip();
                 }
             }
         }
+        
+        for(var i=0; i<this.row2.length; i++){
+            if(!this.row2[i].flipped){
+                break;
+            }
+            if(i=this.row2.length-1){
+                if(this.row2[i].flipped){
+                    this.row2[i].flip();
+                }
+            }
+        }
+        
+        for(var i=0; i<this.row3.length; i++){
+            if(!this.row3[i].flipped){
+                break;
+            }
+            if(i=this.row3.length-1){
+                if(this.row3[i].flipped){
+                    this.row3[i].flip();
+                }
+            }
+        }
+        
+        for(var i=0; i<this.row4.length; i++){
+            if(!this.row4[i].flipped){
+                break;
+            }
+            if(i=this.row4.length-1){
+                if(this.row4[i].flipped){
+                    this.row4[i].flip();
+                }
+            }
+        }
+        
+        for(var i=0; i<this.row5.length; i++){
+            if(!this.row5[i].flipped){
+                break;
+            }
+            if(i=this.row5.length-1){
+                if(this.row5[i].flipped){
+                    this.row5[i].flip();
+                }
+            }
+        }
+    }
+    
+    removeCards(){
+        
+    }
+    
+    placeCards(){
+        
     }
 
 play(){//Set up the solitare game
@@ -108,17 +262,21 @@ play(){//Set up the solitare game
     
     resetGame(){//Resets the game with a new deck and players
         this.solview.eraseRows();
-        this.deck=new Deck();
+        this.deck=new Soldeck();
+        this.extra=new Soldeck();
         this.moves=0;
         
 	    this.deck.shuffle();
 	    this.deck.shuffle();
+        this.extra.shuffle();
+        this.extra.shuffle();
         
-        this.row1=new Array(this.deck.dealACard(), this.deck.dealACard());
-        this.row2=new Array(this.deck.dealACard(), this.deck.dealACard());
-        this.row3=new Array(this.deck.dealACard(), this.deck.dealACard());
-        this.row4=new Array(this.deck.dealACard(), this.deck.dealACard());
-        this.row5=new Array(this.deck.dealACard(), this.deck.dealACard());
+        //arrays for each row of cards
+        this.row1=new Array(this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard());
+        this.row2=new Array(this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard());
+        this.row3=new Array(this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard());
+        this.row4=new Array(this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard());
+        this.row5=new Array(this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard());
         
         for(var i=0; i<this.row1.length-1; i++){
             this.row1[i].flip();

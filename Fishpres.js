@@ -54,7 +54,7 @@ class Fishpres {
         //this.computer.removeDups();
         if(!this.human.fish){
             alert("Recieving");
-            alert("The ask card is " + this.askCard);
+            //alert("The ask card is " + this.askCard);
             if(this.human.give(cardstring,this.askCard)){
                 let index=this.computer.indexOf(this.askCard);
                 alert("Index = "+index);
@@ -98,6 +98,8 @@ class Fishpres {
         this.fview.displayComputerHand(this.computer.getHandCopy());
         if(this.human.isHandEmpty()){
             this.fview.displayMessage("Congradulations! You win!!!");
+            document.getElementById("dups").disabled=true;
+            document.getElementById("sayno").disabled=true;
         }
         this.human.fish=false;
         this.comTurn();
@@ -108,6 +110,7 @@ class Fishpres {
         if(this.human.hasDuplicate()){
             alert("removing duplicates");
             this.human.removeDups();
+            this.fview.displayMessage(document.getElementById("fishstatus").innerHTML + " Duplicate cards have been removed");
             this.fview.displayHumanHand(this.human.getHandCopy());
         }
         else{
@@ -133,7 +136,7 @@ class Fishpres {
 	    this.deck.shuffle();
         
         document.getElementById("dups").disabled=false;
-        document.getElementById("sayno").disabled=false;
+        document.getElementById("No").disabled=false;
 	    
 	    this.pile = new Pile();
 	    //this.pile.acceptACard(this.deck.dealACard());

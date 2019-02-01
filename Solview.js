@@ -6,13 +6,18 @@
 class Solview {
     
     constructor(presenter) {
-    this.presenter = presenter;
-    this.topCard = null;
-    this.topCardString = "";
-    this.errorString = "";
+        this.presenter = presenter;
+        this.topCard = null;
+        this.topCardString = "";
+        this.errorString = "";
     
-    document.getElementById("soldecks").addEventListener("click", function(){presenter.dealNewCards();});
-    //document.getElementById("soldecks").addEventListener("click", function(){presenter.cardSelected(event.target.title);});
+        document.getElementById("soldecks").addEventListener("click", function(){presenter.dealNewCards();});
+        document.getElementById("row1").addEventListener("click", function(){presenter.cardSelected(event.target.title,this.id);});
+        document.getElementById("row2").addEventListener("click", function(){presenter.cardSelected(event.target.title,this.id);});
+        document.getElementById("row3").addEventListener("click", function(){presenter.cardSelected(event.target.title,this.id);});
+        document.getElementById("row4").addEventListener("click", function(){presenter.cardSelected(event.target.title,this.id);});
+        document.getElementById("row5").addEventListener("click", function(){presenter.cardSelected(event.target.title,this.id);});
+        
   }
 
   announceHumanWinner(){
@@ -38,7 +43,7 @@ class Solview {
             }else{
                 let image=document.createElement("img");
                 image.src ="./Images/cardback.png";
-	            image.title=row[i].toString();
+	            //image.title=row[i].toString();
 	            image.class="card positionable";
                 image.style="left: "+ (15*i) + " px; z-index:" + i +"";
                 card.appendChild(image);
@@ -84,6 +89,11 @@ class Solview {
         while(row5.hasChildNodes()){
 	       row5.removeChild(row5.lastChild);
         }
+    }
+    
+    displayMessage(message){
+        let mes=document.getElementById("Solstatus");
+        mes.innerHTML=message;
     }
 
    displayWrongCardMsg(cardstring){
