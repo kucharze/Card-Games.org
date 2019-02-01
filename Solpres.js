@@ -70,6 +70,7 @@ class Solpres {
                 this.solview.displayMessage("That is an illegal move");
             }
             else{
+                alert("moving");
                 ///*
                 if(this.actionRow=="row1"){
                     for(var i=0; i<this.row1.length; i++){
@@ -296,6 +297,8 @@ play(){//Set up the solitare game
         this.deck=new Soldeck();
         this.extra=new Soldeck();
         this.moves=0;
+        this.actionCard=null;
+        this.actionRow=null;
         
 	    this.deck.shuffle();
 	    this.deck.shuffle();
