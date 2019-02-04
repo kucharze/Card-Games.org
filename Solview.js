@@ -17,6 +17,7 @@ class Solview {
         document.getElementById("row3").addEventListener("click", function(){presenter.cardSelected(event.target.title,this.id);});
         document.getElementById("row4").addEventListener("click", function(){presenter.cardSelected(event.target.title,this.id);});
         document.getElementById("row5").addEventListener("click", function(){presenter.cardSelected(event.target.title,this.id);});
+        document.getElementById("row6").addEventListener("click", function(){presenter.cardSelected(event.target.title,this.id);});
         
   }
 
@@ -38,14 +39,14 @@ class Solview {
                 image.src ="./Images/"+row[i].toString()+".png";
 	            image.title=row[i].toString();
 	            image.class="card positionable";
-                image.style="left: "+ (15*i) + " px; z-index:" + i +"";
+                image.style="position: absolute; top: "+ (30*i) + "px; z-index:" + i +";";
                 card.appendChild(image);
             }else{
                 let image=document.createElement("img");
                 image.src ="./Images/cardback.png";
 	            //image.title=row[i].toString();
 	            image.class="card positionable";
-                image.style="left: "+ (15*i) + " px; z-index:" + i +"";
+                image.style="position: absolute; top: "+ (30*i) + "px; z-index:" + i +";";
                 card.appendChild(image);
             }
         }
