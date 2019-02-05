@@ -12,12 +12,12 @@ class Solview {
         this.errorString = "";
     
         document.getElementById("soldecks").addEventListener("click", function(){presenter.dealNewCards();});
-        document.getElementById("row1").addEventListener("click", function(){presenter.cardSelected(event.target.title,this.id);});
-        document.getElementById("row2").addEventListener("click", function(){presenter.cardSelected(event.target.title,this.id);});
-        document.getElementById("row3").addEventListener("click", function(){presenter.cardSelected(event.target.title,this.id);});
-        document.getElementById("row4").addEventListener("click", function(){presenter.cardSelected(event.target.title,this.id);});
-        document.getElementById("row5").addEventListener("click", function(){presenter.cardSelected(event.target.title,this.id);});
-        document.getElementById("row6").addEventListener("click", function(){presenter.cardSelected(event.target.title,this.id);});
+        document.getElementById("row1").addEventListener("click", function(){presenter.cardSelected(event.target.id,this.id);});
+        document.getElementById("row2").addEventListener("click", function(){presenter.cardSelected(event.target.id,this.id);});
+        document.getElementById("row3").addEventListener("click", function(){presenter.cardSelected(event.target.id,this.id);});
+        document.getElementById("row4").addEventListener("click", function(){presenter.cardSelected(event.target.id,this.id);});
+        document.getElementById("row5").addEventListener("click", function(){presenter.cardSelected(event.target.id,this.id);});
+        document.getElementById("row6").addEventListener("click", function(){presenter.cardSelected(event.target.id,this.id);});
         
   }
 
@@ -38,6 +38,7 @@ class Solview {
                 let image=document.createElement("img");
                 image.src ="./Images/"+row[i].toString()+".png";
 	            image.title=row[i].toString();
+                image.id=(i);
 	            image.class="card positionable";
                 image.style="position: absolute; top: "+ (30*i) + "px; z-index:" + i +";";
                 card.appendChild(image);
@@ -45,6 +46,7 @@ class Solview {
                 let image=document.createElement("img");
                 image.src ="./Images/cardback.png";
 	            //image.title=row[i].toString();
+                image.id=i;
 	            image.class="card positionable";
                 image.style="position: absolute; top: "+ (30*i) + "px; z-index:" + i +";";
                 card.appendChild(image);
