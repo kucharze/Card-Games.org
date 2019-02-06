@@ -50,6 +50,9 @@ class Card {
     
   getSuit() { return this.suit; }
   getValue() { return this.value; }
+    getSValue(){return this.sValue;}
+    getJackValue(){return this.jackValue;}
+    getWarValue(){return this.warValue;}
     
     flip(){
         this.flipped=!this.flipped;
