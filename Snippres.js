@@ -26,8 +26,6 @@ class Snippres {
 
 //takes the string for a card and determines if the player's turn is over
  cardSelected(cardString){
-     //alert("snip");
-     //alert(cardString);
      let card=this.pile.getTopCard();
      let hum=this.human.find(cardString);
      if(!this.snip){
@@ -88,8 +86,6 @@ class Snippres {
                 alert("snip");
                 let pcard=this.pile.getTopCard();
                 let hand=this.cpu.getHandCopy();
-                //alert("pcard: "+pcard);
-                //alert("hand card: "+hand[1]);
                 this.pile.acceptACard(hand[1]);
                 this.cpu.remove(1);
                 this.snipview.displayComputerHand(this.cpu.getHandCopy());
@@ -111,7 +107,6 @@ class Snippres {
                 let com=null;
                 let play=false;
                 for(var i=0; i<hand.length; i++){
-                    //alert(hand[i]);
                     if(hand[i].getValue() == this.pile.getTopCard().getValue()){
                         alert("can play");
                         this.cpu.played=true;
@@ -125,14 +120,13 @@ class Snippres {
                         this.snipview.displayPileTopCard(this.pile.getTopCard());
                         this.snap=true;
                         this.snipview.displayMessage("Snap");
+                        if(this.cpu.isHandEmpty()){
+                            this.snipview.displayMessage("CPU wins!! Rematch?");
+                            document.getElementById("passturn").disabled=true;
+                            return;
+                        }
                         break;
                     }
-                }
-                
-                if(this.cpu.isHandEmpty()){
-                        this.snipview.displayMessage("CPU wins!! Rematch?");
-                        document.getElementById("passturn").disabled=true;
-                    return;
                 }
                 
                 if(!this.cpu.played){
@@ -168,16 +162,14 @@ class Snippres {
                         //alert("pcard after: "+this.pile.getTopCard());
                         this.snipview.displayMessage("Snorum");
                         this.cpu.played=true;
-                        //alert("reset");
-                        break;
-                    }
-                }
-                
                         if(this.cpu.isHandEmpty()){
                             this.snipview.displayMessage("CPU wins!! Rematch?");
                             document.getElementById("passturn").disabled=true;
                             return;
                         }
+                        break;
+                    }
+                }
                 
                 if(!this.cpu.played){
                     this.snip=false;

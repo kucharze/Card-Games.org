@@ -34,17 +34,17 @@ class Solview {
             card.removeChild(card.lastChild);
         }
         
-        
-        for(var i=0; i<row.length; i++){
-            if(row[i]==null){
-                let image=document.createElement("img");
+        if(row[0]==null){
+            //alert("row is null");
+            let image=document.createElement("img");
                 image.src ="./Images/cardback.jpg";
-	            //image.title=row[i].toString();
-                image.id=i;
+	            image.title="Empty row";
+                image.id="empty";
 	            image.class="card positionable";
                 image.style="position: absolute; top: "+ (30*i) + "px; z-index:" + i +";";
                 card.appendChild(image);
-            }
+        }
+        for(var i=0; i<row.length; i++){
             if(!row[i].flipped){
                 let image=document.createElement("img");
                 image.src ="./Images/"+row[i].toString()+".png";

@@ -9,21 +9,19 @@ class Solpres {
      */
     constructor() {
         this.moves=0;
-        this.actionCard=null;
         this.actionRow=null;
-        this.actionPos=0;
-        this.actionCards=new Array();
+        this.actionPos=-1;
         this.deck = new Soldeck();
 	    this.deck.shuffle();
         this.deck.shuffle();
-        this.extra=new Soldeck();
+        this.extra=new Soldeck();//deck used for dealing out extra cards
         this.extra.shuffle();
         this.extra.shuffle();
 	    this.solview = new Solview(this);
         this.placing=false;
         
         //arrays for each row of cards
-        this.row1=new Array(this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard());
+        this.row1=new Array(this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard(), new Card("h","k"));
         this.row2=new Array(this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard());
         this.row3=new Array(this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard());
         this.row4=new Array(this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard());
@@ -51,18 +49,23 @@ class Solpres {
         this.decksadded=0;
     }
 
-//takes the string for a card and determines if the player's turn is over
-//if it is complete the cycle of the players turn and the humans turn
+//Finds a card based on info passed in and then determines how to move cards
  cardSelected(cardPos,row){
-     //alert(cardString);
-     //return;
-     //alert(cardString);
-     let c=null;
+     //let c=null;
      if(cardPos==""){//A face down card was clicked on
          this.solview.displayMessage("That card is currently not flipped up");
          return;
      }
-     let card=this.find(cardPos,row);
+     
+     let card=null;
+     alert(cardPos);
+     if(cardPos=="empty"){
+         card = new Card("s","k");
+     }
+     else{
+         card=this.find(cardPos,row);
+     }
+     //let card=this.find(cardPos,row);
      if(card==null){//Null card error
          this.solview.displayMessage("Error cannot find chosen card")
          return;
@@ -70,25 +73,20 @@ class Solpres {
      else{
          if(!this.placing){
              let value=0;
-            //this.actionCard=card;
              alert("Trying to remove cards");
              let j=0;
              //Find pos of card to make changes to selected row
              if(row=="row1"){
-                 //alert("Pos: "+cardPos);
-                // alert("length = "+this.row1.length);
                  for(var i =cardPos; i<this.row1.length; i++){
                      //alert("i="+i);
                      j=++i;
                      i--;
-                     alert("j "+j);
                      if(i==this.row1.length-1){
-                         //this.actionCards.push(this.row5[i]); 
                          break;
                      }
-                     if(this.row1[i].getSValue() != this.row1[j].getSValue()+1){
+                     if(this.row1[i].getSValue() != +this.row1[j].getSValue() + +1){
                          alert("Move fail");
-                         alert("card 1 "+ this.row1[i] + " card 2 "+this.row1[j]);
+                         //alert("card 1 "+ this.row1[i] + " card 2 "+this.row1[j]);
                          alert("Value 1 "+ this.row1[i].getSValue() + " value 2 "+this.row1[j].getSValue());
                          this.solview.displayMessage("That card cannot be moved");
                          return;
@@ -96,18 +94,17 @@ class Solpres {
                  }
              }
              else if(row=="row2"){
-                 //alert("length = "+this.row2.length);
                  for(var i =cardPos; i<this.row2.length; i++){
                      //alert("i="+i);
                      j=++i;
                      i--;
-                     alert("j "+j);
+                     //alert("j "+j);
                      if(i==this.row2.length-1){
                          break;
                      }
-                     if(this.row2[i].getSValue() != this.row2[j].getSValue()+1){
+                     if(this.row2[i].getSValue() != +this.row2[j].getSValue() + +1){
                          alert("Move fail");
-                         alert("card 1 "+ this.row2[i] + " card 2 "+this.row2[j]);
+                         //alert("card 1 "+ this.row2[i] + " card 2 "+this.row2[j]);
                          alert("Value 1 "+ this.row2[i].getSValue() + " value 2 "+this.row2[j].getSValue());
                          this.solview.displayMessage("That card cannot be moved");
                          return;
@@ -115,19 +112,15 @@ class Solpres {
                  }
              }
              else if(row=="row3"){
-                 //alert("Pos: "+cardPos);
-                 //alert("length = "+this.row3.length);
                  for(var i =cardPos; i<this.row3.length; i++){
-                     //alert("i="+i);
                      j=++i;
                      i--;
-                     alert("j "+j);
                      if(i==this.row3.length-1){
                          break;
                      }
-                     if(this.row3[i].getSValue() != this.row3[j].getSValue()+1){
+                     if(this.row3[i].getSValue() != +this.row3[j].getSValue() + +1){
                          alert("Move fail");
-                         alert("card 1 "+ this.row3[i] + " card 2 "+this.row3[j]);
+                         //alert("card 1 "+ this.row3[i] + " card 2 "+this.row3[j]);
                          alert("Value 1 "+ this.row3[i].getSValue() + " value 2 "+this.row3[j].getSValue());
                          this.solview.displayMessage("That card cannot be moved");
                          return;
@@ -135,20 +128,15 @@ class Solpres {
                  }
              }
              else if(row=="row4"){
-                 //alert("Pos: "+cardPos);
-                 //alert("length = "+this.row4.length);
                  for(var i =cardPos; i<this.row4.length; i++){
-                     //alert("i="+i);
                      j=++i;
                      i--;
-                     alert("j "+j);
                      if(i==this.row4.length-1){
                          break;
                      }
-                     
-                     if(this.row4[i].getSValue() != this.row4[j].getSValue()+1){
+                     if(this.row4[i].getSValue() != +this.row4[j].getSValue() + +1){
                          alert("Move fail");
-                         alert("card 1 "+ this.row4[i] + " card 2 "+this.row4[j]);
+                         //alert("card 1 "+ this.row4[i] + " card 2 "+this.row4[j]);
                          alert("Value 1 "+ this.row4[i].getSValue() + " value 2 "+this.row4[j].getSValue());
                          this.solview.displayMessage("That card cannot be moved");
                          return;
@@ -156,19 +144,15 @@ class Solpres {
                  }
              }
              else if(row=="row5"){
-                // alert("Pos: "+cardPos);
-                 //alert("length = "+this.row5.length);
                  for(var i =cardPos; i<this.row5.length; i++){
-                     //alert("i="+i);
                      j=++i;
                      i--;
-                     alert("j "+j);
                      if(i==this.row5.length-1){
                          break;
                      }
-                     if(this.row5[i].getSValue() != this.row5[j].getSValue()+1){
+                     if(this.row5[i].getSValue() != +this.row5[j].getSValue() + +1){
                          alert("Move fail");
-                         alert("card 1 "+ this.row5[i] + " card 2 "+this.row5[j]);
+                         //alert("card 1 "+ this.row5[i] + " card 2 "+this.row5[j]);
                          alert("Value 1 "+ this.row5[i].getSValue() + " value 2 "+this.row5[j].getSValue());
                          this.solview.displayMessage("That card cannot be moved");
                          return;
@@ -176,19 +160,15 @@ class Solpres {
                  }
              }
              else if(row=="row6"){
-                 //alert("Pos: "+cardPos);
-                 //alert("length = "+this.row6.length);
                  for(var i =cardPos; i<this.row6.length; i++){
-                     //alert("i="+i);
                      j=++i;
                      i--;
-                     alert("j "+j);
                      if(i==this.row6.length-1){
                          break;
                      }
-                     if(this.row6[i].getSValue() != this.row6[j].getSValue()+1){
+                     if(this.row6[i].getSValue() != +this.row6[j].getSValue() + +1){
                          alert("Move fail");
-                         alert("card 1 "+ this.row6[i] + " card 2"+this.row6[j]);
+                         //alert("card 1 "+ this.row6[i] + " card 2"+this.row6[j]);
                          alert("Value 1 "+ this.row6[i].getSValue() + " value 2"+this.row6[j].getSValue());
                          this.solview.displayMessage("That card cannot be moved");
                          return;
@@ -208,68 +188,137 @@ class Solpres {
             let movable=true;//Boolean to determine if we are making a legal move currently false for testing
             let value=card.getSValue();
             
+            //alert("cardpos=" +cardPos);
             //Run checks to make sure the move that we are making is legal
-            if(this.actionRow=="row1"){ 
-                //alert("Card to move "+this.row1[this.actionPos].sValue);
-                if(this.row1[this.actionPos].getSValue() == value-1){
-                    movable=true;
+            if(this.actionRow=="row1"){
+                alert("Card to move "+this.row1[this.actionPos].getSValue());
+                if(this.row1[this.actionPos].getSValue() == 13){
+                    alert("The card to be moved is a king");
+                    if(cardPos=="empty"){
+                        movable=true;
+                    }
+                    else{
+                        movable=false;
+                    }
                 }else{
-                    movable=false;
+                    alert("The card to move to " + (+card.getSValue() - +1) );
+                    if(this.row1[this.actionPos].getSValue() == (+card.getSValue() - +1)){
+                        movable=true;
+                    }
+                    else{
+                        movable=false;
+                    }
                 }
             }
             else if(this.actionRow=="row2"){
-                //alert("Card to move "+this.row2[this.actionPos].sValue);
-                if(this.row2[this.actionPos].getSValue() == (value-1)){
-                    movable=true;
+                alert("Card to move "+this.row2[this.actionPos].sValue);
+                if(this.row2[this.actionPos].getSValue() == 13){
+                    alert("The card to be moved is a king");
+                    if(cardPos=="empty"){
+                        movable=true;
+                    }
+                    else{
+                        movable=false;
+                    }
                 }else{
-                    movable=false;
+                    alert("The card to move to " + (+card.getSValue() - +1) );
+                    if(this.row2[this.actionPos].getSValue() == (+card.getSValue() - +1)){
+                        movable=true;
+                    }
+                    else{
+                        movable=false;
+                    }
                 }
             }
             else if(this.actionRow=="row3"){
-                //alert("Card to move "+this.row3[this.actionPos].sValue);
-                if(this.row3[this.actionPos].getSValue() == (value-1)){
-                    movable=true;
+                alert("Card to move "+this.row3[this.actionPos].sValue);
+                if(this.row3[this.actionPos].getSValue() == 13){
+                    alert("The card to be moved is a king");
+                    if(cardPos=="empty"){
+                        movable=true;
+                    }
+                    else{
+                        movable=false;
+                    }
                 }else{
-                    movable=false;
+                    alert("The card to move to " + (+card.getSValue() - +1) );
+                    if(this.row3[this.actionPos].getSValue() == (+card.getSValue() - +1)){
+                        movable=true;
+                    }
+                    else{
+                        movable=false;
+                    }
                 }
             }
             else if(this.actionRow=="row4"){
-                //alert("Card to move "+this.row4[this.actionPos].sValue);
-                if(this.row4[this.actionPos].getSValue() == (value-1)){
-                    movable=true;
+                alert("Card to move "+this.row4[this.actionPos].sValue);
+                if(this.row4[this.actionPos].getSValue() == 13){
+                    alert("The card to be moved is a king");
+                    if(cardPos=="empty"){
+                        movable=true;
+                    }
+                    else{
+                        movable=false;
+                    }
                 }else{
-                    movable=false;
+                    alert("The card to move to " + (+card.getSValue() - +1) );
+                    if(this.row4[this.actionPos].getSValue() == (+card.getSValue() - +1)){
+                        movable=true;
+                    }
+                    else{
+                        movable=false;
+                    }
                 }
             }
             else if(this.actionRow=="row5"){
-                //alert("Card to move "+this.row5[this.actionPos].sValue);
-                if(this.row5[this.actionPos].getSValue() == (value-1)){
-                    movable=true;
+                alert("Card to move "+this.row5[this.actionPos].sValue);
+                if(this.row5[this.actionPos].getSValue() == 13){
+                    alert("The card to be moved is a king");
+                    if(cardPos=="empty"){
+                        movable=true;
+                    }
+                    else{
+                        movable=false;
+                    }
                 }else{
-                    movable=false;
+                    alert("The card to move to " + (+card.getSValue() - +1) );
+                    if(this.row5[this.actionPos].getSValue() == (+card.getSValue() - +1)){
+                        movable=true;
+                    }
+                    else{
+                        movable=false;
+                    }
                 }
             }
             else if(this.actionRow=="row6"){
-                //alert("Card to move "+this.row6[this.actionPos].sValue);
-                if(this.row6[this.actionPos].getSValue() == (value-1) ){
-                    movable=true;
+                alert("Card to move "+this.row6[this.actionPos].sValue);
+                if(this.row6[this.actionPos].getSValue() == 13){
+                    alert("The card to be moved is a king");
+                    if(cardPos=="empty"){
+                        movable=true;
+                    }
+                    else{
+                        movable=false;
+                    }
                 }else{
-                    movable=false;
+                    alert("The card to move to " + (+card.getSValue() - +1) );
+                    if(this.row6[this.actionPos].getSValue() == (+card.getSValue() - +1) ){
+                        movable=true;
+                    }
+                    else{
+                        movable=false;
+                    }
                 }
             }
             //this.actionCards[0].sValue != card.sValue-1
             alert("Movable= "+movable);
             if(!movable){//if the move that we are making is not legal
                 this.solview.displayMessage("Illeagal move select cards to move again");
-                this.checkFlips();
-                this.actionCard=null;
                 this.actionRow=null;
-                this.actionPos=0;
-                this.actionCards.splice(0);
+                this.actionPos=-1;
                 this.placing=false;
                 return;
             }
-                //alert("moving");
             
             let mrow=new Array();
             if(this.actionRow=="row1"){
@@ -353,18 +402,23 @@ class Solpres {
                 //*/
                 
             this.checkFlips();
-            //this.actionCard=null;
             this.actionRow=null;
-            this.actionCards.splice(0);
             this.placing=false;
-            this.solview.displayMessage("Select cards to have moved");
+            this.removeCards();
+            if(this.checkWin()){
+                this.solview.displayMessage("Congradulations you win!!!")
+            }
+            else{
+                this.solview.displayMessage("Select cards to have moved");
             
-            this.solview.displayRow(this.row1, 1);
-            this.solview.displayRow(this.row2, 2);
-            this.solview.displayRow(this.row3, 3);
-            this.solview.displayRow(this.row4, 4);
-            this.solview.displayRow(this.row5, 5);
-            this.solview.displayRow(this.row6, 6);
+                this.solview.displayRow(this.row1, 1);
+                this.solview.displayRow(this.row2, 2);
+                this.solview.displayRow(this.row3, 3);
+                this.solview.displayRow(this.row4, 4);
+                this.solview.displayRow(this.row5, 5);
+                this.solview.displayRow(this.row6, 6); 
+            }
+            
         }
      }
      
@@ -391,63 +445,255 @@ class Solpres {
     }
     
     find(cardPos,rowNum){
-        //let r = null;
-        //alert("Cardstrings = "+cardString);
         var r=null;
         if(rowNum == "row1"){
-            //alert("going for row 1");
             r=this.row1;
         }
         else if(rowNum == "row2"){
-            //alert("going for row 2");
             r=this.row2;
         }
         else if(rowNum=="row3"){
-            //alert("going for row 3");
             r=this.row3;
         }
         else if(rowNum=="row4"){
-            //alert("going for row 4");
             r=this.row4;
         }
         else if(rowNum=="row5"){
-            //alert("going for row 5");
             r=this.row5;
         }
         else if(rowNum=="row6"){
-            //alert("going for row 5");
             r=this.row6;
         }
         
-        //alert("r= "+r);
-        //alert("the card found is "+r[cardPos]);
         return r[cardPos];
         return null;
     }
     
+    removeCards(){
+        let c1=-1;
+        let c2=-1;
+        var times=0;
+        var pos=-1;
+        for(var i=0; i<this.row1.length; i++){
+            c2=this.row1[i].getSValue();
+            if(c2==13){
+               if(c1 == -1){
+                    c1=c2;
+                    times++;
+                    pos=i;
+                }
+                else{
+                    if(c2== +c1 - +1){
+                        c1=c2;
+                        times++;
+                    }
+                    else{
+                        break;
+                    }
+                } 
+            }
+            if(times == 13){
+                this.row1.splice(pos, 13);
+                break;
+            }
+        }
+        c1=-1;
+        c2=-1;
+        times=0;
+        pos=-1;
+        
+        for(var i=0; i<this.row2.length; i++){
+            c2=this.row2[i].getSValue();
+            if(c2==13){
+               if(c1 == -1){
+                    c1=c2;
+                    times++;
+                    pos=i;
+               }
+                else{
+                    if(c2== +c1 - +1){
+                        c1=c2;
+                        times++;
+                    }
+                    else{
+                        break;
+                    }
+                } 
+            }
+            if(times == 13){
+                this.row2.splice(pos, 13);
+                break;
+            }
+            
+        }
+        c1=-1;
+        c2=-1;
+        times=0;
+        pos=-1;
+        
+        for(var i=0; i<this.row3.length; i++){
+            c2=this.row3[i].getSValue();
+            if(c2==13){
+               if(c1 == -1){
+                    c1=c2;
+                    times++;
+                    pos=i;
+                }
+                else{
+                    if(c2== +c1 - +1){
+                        c1=c2;
+                        times++;
+                    }
+                    else{
+                        break;
+                    }
+                } 
+            }
+            if(times == 13){
+                this.row3.splice(pos, 13);
+                break;
+            }
+        }
+        c1=-1;
+        c2=-1;
+        times=0;
+        pos=-1;
+        
+        for(var i=0; i<this.row4.length; i++){
+            c2=this.row4[i].getSValue();
+            if(c2==13){
+               if(c1 == -1){
+                    c1=c2;
+                    times++;
+                    pos=i;
+                }
+                else{
+                    if(c2== +c1 - +1){
+                        c1=c2;
+                        times++;
+                    }
+                    else{
+                        break;
+                    }
+                } 
+            }
+            if(times == 13){
+                this.row4.splice(pos, 13);
+                break;
+            }
+        }
+        c1=-1;
+        c2=-1;
+        times=0;
+        pos=-1;
+        
+        for(var i=0; i<this.row5.length; i++){
+            c2=this.row5[i].getSValue();
+            if(c2==13){
+               if(c1 == -1){
+                    c1=c2;
+                    times++;
+                    pos=i;
+                }
+                else{
+                    if(c2== +c1 - +1){
+                        c1=c2;
+                        times++;
+                    }
+                    else{
+                        break;
+                    }
+                } 
+            }
+            if(times == 13){
+                this.row5.splice(pos, 13);
+                break;
+            }
+        }
+        c1=-1;c2=-1;
+        times=0;
+        pos=-1;
+        
+        for(var i=0; i<this.row6.length; i++){
+            c2=this.row6[i].getSValue();
+            if(c2==13){
+               if(c1 == -1){
+                    c1=c2;
+                    times++;
+                    pos=i;
+                }
+                else{
+                    if(c2== +c1 - +1){
+                        c1=c2;
+                        times++;
+                    }
+                    else{
+                        break;
+                    }
+                } 
+            }
+            if(times == 13){
+                this.row6.splice(pos, 13);
+                break;
+            }
+        }
+        
+    }
+    
+    checkWin(){
+        let win=true;
+        if(this.row1.length>0){
+            win=false;
+        }
+        if(this.row2.length>0){
+            win=false;
+        }
+        if(this.row3.length>0){
+            win=false;
+        }
+        if(this.row4.length>0){
+            win=false;
+        }
+        if(this.row5.length>0){
+            win=false;
+        }
+        if(this.row6.length>0){
+            win=false;
+        }
+        
+        return win;
+    }
+    
     checkFlips(){
-        if(this.row1[this.row1.length-1].flipped){
-            this.row1[this.row1.length-1].flip();
+        if(this.row1.length>0){
+            if(this.row1[this.row1.length-1].flipped){
+                this.row1[this.row1.length-1].flip();
+            }
         }
-        
-        if(this.row2[this.row2.length-1].flipped){
-            this.row2[this.row2.length-1].flip();
+        if(this.row2.length>0){
+            if(this.row2[this.row2.length-1].flipped){
+                this.row2[this.row2.length-1].flip();
+            }
         }
-        
-        if(this.row3[this.row3.length-1].flipped){
-            this.row3[this.row3.length-1].flip();
+        if(this.row3.length>0){
+            if(this.row3[this.row3.length-1].flipped){
+                this.row3[this.row3.length-1].flip();
+            }
         }
-        
-        if(this.row4[this.row4.length-1].flipped){
-            this.row4[this.row4.length-1].flip();
+        if(this.row4.length>0){
+            if(this.row4[this.row4.length-1].flipped){
+                this.row4[this.row4.length-1].flip();
+            }
         }
-        
-        if(this.row5[this.row5.length-1].flipped){
-            this.row5[this.row5.length-1].flip();
+        if(this.row5.length>0){
+            if(this.row5[this.row5.length-1].flipped){
+                this.row5[this.row5.length-1].flip();
+            }
         }
-        
-        if(this.row6[this.row6.length-1].flipped){
-            this.row6[this.row6.length-1].flip();
+        if(this.row6.length>0){
+            if(this.row6[this.row6.length-1].flipped){
+                this.row6[this.row6.length-1].flip();
+            }
         }
         
     }
@@ -468,11 +714,8 @@ play(){//Set up the solitare game
         this.deck=new Soldeck();
         this.extra=new Soldeck();
         this.moves=0;
-        this.actionCard=null;
         this.actionRow=null;
         this.actionPos=0;
-        this.actionCards.splice(0);
-        
         
 	    this.deck.shuffle();
 	    this.deck.shuffle();
