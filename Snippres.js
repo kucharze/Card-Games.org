@@ -86,13 +86,16 @@ class Snippres {
                 alert("snip");
                 let pcard=this.pile.getTopCard();
                 let hand=this.cpu.getHandCopy();
-                this.pile.acceptACard(hand[1]);
-                this.cpu.remove(1);
+                alert("hand at 0 = "+hand[0]);
+                this.pile.acceptACard(hand[0]);
+                this.cpu.remove(this.cpu.indexOf(hand[0]));
                 this.snipview.displayComputerHand(this.cpu.getHandCopy());
                 this.snipview.displayPileTopCard(this.pile.getTopCard());
                 this.snip=true;
                 this.snipview.displayMessage("Snip");
                 this.cpu.played=true;
+                
+                alert("cpu hand = "+this.cpu.getHandCopy());
                 if(this.cpu.isHandEmpty()){
                     this.snipview.displayMessage("CPU wins!! Rematch?");
                     document.getElementById("passturn").disabled=true;
@@ -101,14 +104,14 @@ class Snippres {
                 
             }
             else if(this.snip && !this.snap){
-                alert("snap");
+                //alert("snap");
                 let pcard=this.pile.getTopCard();
                 let hand=this.cpu.getHandCopy();
                 let com=null;
                 let play=false;
                 for(var i=0; i<hand.length; i++){
                     if(hand[i].getValue() == this.pile.getTopCard().getValue()){
-                        alert("can play");
+                        alert("Snap play");
                         this.cpu.played=true;
                         //alert("pcard: "+pcard);
                         //alert("hand card: "+hand[i]);
@@ -128,10 +131,11 @@ class Snippres {
                         break;
                     }
                 }
-                
+                alert("cpu hand = "+this.cpu.getHandCopy());
                 if(!this.cpu.played){
                     this.snip=false;
                     this.snap=false;
+                    this.snipview.displayMessage("No Play made the round has been reset");
                     break;
                 }
                 if(!play){
@@ -140,14 +144,14 @@ class Snippres {
                 }
             }
             else if(this.snip && this.snap){
-                alert("snorum");
+                //alert("snorum");
                 let pcard=this.pile.getTopCard();
                 let hand=this.cpu.getHandCopy();
                 let com=null;
                 let play=false;
                 for(var i=0; i<hand.length; i++){
                     if(hand[i].getValue() == this.pile.getTopCard().getValue()){
-                        alert("can play");
+                        alert("Snorum play");
                         this.cpu.played=true;
                         com=hand[i];
                         //alert("pcard: "+pcard);
@@ -171,9 +175,12 @@ class Snippres {
                     }
                 }
                 
+                alert("cpu hand = "+this.cpu.getHandCopy());
+                
                 if(!this.cpu.played){
                     this.snip=false;
                     this.snap=false;
+                    this.snipview.displayMessage("No play made the round has been reset");
                     break;
                 }
                 

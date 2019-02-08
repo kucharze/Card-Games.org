@@ -21,16 +21,16 @@ class Solpres {
         this.placing=false;
         
         //arrays for each row of cards
-        this.row1=new Array(this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard(), new Card("h","k"));
-        this.row2=new Array(this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard());
-        this.row3=new Array(this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard());
+        this.row1=new Array(this.deck.dealACard(), new Card("h","k"), new Card("h","q"),new Card("h","j"),new Card("h","10"),new Card("h","9"),new Card("h","8"),new Card("h","7"),new Card("h","6"),new Card("h","5"),new Card("h","4"),new Card("h","3"));
+        this.row2=new Array(this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard(), new Card("h","2"));
+        this.row3=new Array(this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard(), new Card("h","a"));
         this.row4=new Array(this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard());
         this.row5=new Array(this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard());
         this.row6=new Array(this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard(), this.deck.dealACard());
-        
+        /*
         for(var i=0; i<this.row1.length-1; i++){
             this.row1[i].flip();
-        }
+        }*/
         for(var i=0; i<this.row2.length-1; i++){
             this.row2[i].flip();
         }
@@ -58,7 +58,7 @@ class Solpres {
      }
      
      let card=null;
-     alert(cardPos);
+     //alert("cardpos="+cardPos);
      if(cardPos=="empty"){
          card = new Card("s","k");
      }
@@ -73,12 +73,10 @@ class Solpres {
      else{
          if(!this.placing){
              let value=0;
-             alert("Trying to remove cards");
              let j=0;
              //Find pos of card to make changes to selected row
              if(row=="row1"){
                  for(var i =cardPos; i<this.row1.length; i++){
-                     //alert("i="+i);
                      j=++i;
                      i--;
                      if(i==this.row1.length-1){
@@ -87,7 +85,7 @@ class Solpres {
                      if(this.row1[i].getSValue() != +this.row1[j].getSValue() + +1){
                          alert("Move fail");
                          //alert("card 1 "+ this.row1[i] + " card 2 "+this.row1[j]);
-                         alert("Value 1 "+ this.row1[i].getSValue() + " value 2 "+this.row1[j].getSValue());
+                         //alert("Value 1 "+ this.row1[i].getSValue() + " value 2 "+this.row1[j].getSValue());
                          this.solview.displayMessage("That card cannot be moved");
                          return;
                      }
@@ -95,17 +93,15 @@ class Solpres {
              }
              else if(row=="row2"){
                  for(var i =cardPos; i<this.row2.length; i++){
-                     //alert("i="+i);
                      j=++i;
                      i--;
-                     //alert("j "+j);
                      if(i==this.row2.length-1){
                          break;
                      }
                      if(this.row2[i].getSValue() != +this.row2[j].getSValue() + +1){
                          alert("Move fail");
                          //alert("card 1 "+ this.row2[i] + " card 2 "+this.row2[j]);
-                         alert("Value 1 "+ this.row2[i].getSValue() + " value 2 "+this.row2[j].getSValue());
+                         //alert("Value 1 "+ this.row2[i].getSValue() + " value 2 "+this.row2[j].getSValue());
                          this.solview.displayMessage("That card cannot be moved");
                          return;
                      }
@@ -121,7 +117,7 @@ class Solpres {
                      if(this.row3[i].getSValue() != +this.row3[j].getSValue() + +1){
                          alert("Move fail");
                          //alert("card 1 "+ this.row3[i] + " card 2 "+this.row3[j]);
-                         alert("Value 1 "+ this.row3[i].getSValue() + " value 2 "+this.row3[j].getSValue());
+                         //alert("Value 1 "+ this.row3[i].getSValue() + " value 2 "+this.row3[j].getSValue());
                          this.solview.displayMessage("That card cannot be moved");
                          return;
                      }
@@ -137,7 +133,7 @@ class Solpres {
                      if(this.row4[i].getSValue() != +this.row4[j].getSValue() + +1){
                          alert("Move fail");
                          //alert("card 1 "+ this.row4[i] + " card 2 "+this.row4[j]);
-                         alert("Value 1 "+ this.row4[i].getSValue() + " value 2 "+this.row4[j].getSValue());
+                         //alert("Value 1 "+ this.row4[i].getSValue() + " value 2 "+this.row4[j].getSValue());
                          this.solview.displayMessage("That card cannot be moved");
                          return;
                      }
@@ -153,7 +149,7 @@ class Solpres {
                      if(this.row5[i].getSValue() != +this.row5[j].getSValue() + +1){
                          alert("Move fail");
                          //alert("card 1 "+ this.row5[i] + " card 2 "+this.row5[j]);
-                         alert("Value 1 "+ this.row5[i].getSValue() + " value 2 "+this.row5[j].getSValue());
+                         //alert("Value 1 "+ this.row5[i].getSValue() + " value 2 "+this.row5[j].getSValue());
                          this.solview.displayMessage("That card cannot be moved");
                          return;
                      }
@@ -169,7 +165,7 @@ class Solpres {
                      if(this.row6[i].getSValue() != +this.row6[j].getSValue() + +1){
                          alert("Move fail");
                          //alert("card 1 "+ this.row6[i] + " card 2"+this.row6[j]);
-                         alert("Value 1 "+ this.row6[i].getSValue() + " value 2"+this.row6[j].getSValue());
+                         //alert("Value 1 "+ this.row6[i].getSValue() + " value 2"+this.row6[j].getSValue());
                          this.solview.displayMessage("That card cannot be moved");
                          return;
                      }
@@ -183,15 +179,12 @@ class Solpres {
              
             return;
         }else{
-            //alert("Row card value "+card.sValue);
-            
             let movable=true;//Boolean to determine if we are making a legal move currently false for testing
             let value=card.getSValue();
             
-            //alert("cardpos=" +cardPos);
             //Run checks to make sure the move that we are making is legal
             if(this.actionRow=="row1"){
-                alert("Card to move "+this.row1[this.actionPos].getSValue());
+                //alert("Card to move "+this.row1[this.actionPos].getSValue());
                 if(this.row1[this.actionPos].getSValue() == 13){
                     alert("The card to be moved is a king");
                     if(cardPos=="empty"){
@@ -201,7 +194,7 @@ class Solpres {
                         movable=false;
                     }
                 }else{
-                    alert("The card to move to " + (+card.getSValue() - +1) );
+                   // alert("The card to move to " + (+card.getSValue() - +1) );
                     if(this.row1[this.actionPos].getSValue() == (+card.getSValue() - +1)){
                         movable=true;
                     }
@@ -211,9 +204,9 @@ class Solpres {
                 }
             }
             else if(this.actionRow=="row2"){
-                alert("Card to move "+this.row2[this.actionPos].sValue);
+                //alert("Card to move "+this.row2[this.actionPos].sValue);
                 if(this.row2[this.actionPos].getSValue() == 13){
-                    alert("The card to be moved is a king");
+                    //alert("The card to be moved is a king");
                     if(cardPos=="empty"){
                         movable=true;
                     }
@@ -221,7 +214,7 @@ class Solpres {
                         movable=false;
                     }
                 }else{
-                    alert("The card to move to " + (+card.getSValue() - +1) );
+                   // alert("The card to move to " + (+card.getSValue() - +1) );
                     if(this.row2[this.actionPos].getSValue() == (+card.getSValue() - +1)){
                         movable=true;
                     }
@@ -231,9 +224,9 @@ class Solpres {
                 }
             }
             else if(this.actionRow=="row3"){
-                alert("Card to move "+this.row3[this.actionPos].sValue);
+               // alert("Card to move "+this.row3[this.actionPos].sValue);
                 if(this.row3[this.actionPos].getSValue() == 13){
-                    alert("The card to be moved is a king");
+                    //alert("The card to be moved is a king");
                     if(cardPos=="empty"){
                         movable=true;
                     }
@@ -241,7 +234,7 @@ class Solpres {
                         movable=false;
                     }
                 }else{
-                    alert("The card to move to " + (+card.getSValue() - +1) );
+                    //alert("The card to move to " + (+card.getSValue() - +1) );
                     if(this.row3[this.actionPos].getSValue() == (+card.getSValue() - +1)){
                         movable=true;
                     }
@@ -251,9 +244,9 @@ class Solpres {
                 }
             }
             else if(this.actionRow=="row4"){
-                alert("Card to move "+this.row4[this.actionPos].sValue);
+                //alert("Card to move "+this.row4[this.actionPos].sValue);
                 if(this.row4[this.actionPos].getSValue() == 13){
-                    alert("The card to be moved is a king");
+                    //alert("The card to be moved is a king");
                     if(cardPos=="empty"){
                         movable=true;
                     }
@@ -261,7 +254,7 @@ class Solpres {
                         movable=false;
                     }
                 }else{
-                    alert("The card to move to " + (+card.getSValue() - +1) );
+                    //alert("The card to move to " + (+card.getSValue() - +1) );
                     if(this.row4[this.actionPos].getSValue() == (+card.getSValue() - +1)){
                         movable=true;
                     }
@@ -271,9 +264,9 @@ class Solpres {
                 }
             }
             else if(this.actionRow=="row5"){
-                alert("Card to move "+this.row5[this.actionPos].sValue);
+               // alert("Card to move "+this.row5[this.actionPos].sValue);
                 if(this.row5[this.actionPos].getSValue() == 13){
-                    alert("The card to be moved is a king");
+                    //alert("The card to be moved is a king");
                     if(cardPos=="empty"){
                         movable=true;
                     }
@@ -281,7 +274,7 @@ class Solpres {
                         movable=false;
                     }
                 }else{
-                    alert("The card to move to " + (+card.getSValue() - +1) );
+                   //alert("The card to move to " + (+card.getSValue() - +1) );
                     if(this.row5[this.actionPos].getSValue() == (+card.getSValue() - +1)){
                         movable=true;
                     }
@@ -291,7 +284,7 @@ class Solpres {
                 }
             }
             else if(this.actionRow=="row6"){
-                alert("Card to move "+this.row6[this.actionPos].sValue);
+                //alert("Card to move "+this.row6[this.actionPos].sValue);
                 if(this.row6[this.actionPos].getSValue() == 13){
                     alert("The card to be moved is a king");
                     if(cardPos=="empty"){
@@ -301,7 +294,7 @@ class Solpres {
                         movable=false;
                     }
                 }else{
-                    alert("The card to move to " + (+card.getSValue() - +1) );
+                    //alert("The card to move to " + (+card.getSValue() - +1) );
                     if(this.row6[this.actionPos].getSValue() == (+card.getSValue() - +1) ){
                         movable=true;
                     }
@@ -310,7 +303,7 @@ class Solpres {
                     }
                 }
             }
-            //this.actionCards[0].sValue != card.sValue-1
+            
             alert("Movable= "+movable);
             if(!movable){//if the move that we are making is not legal
                 this.solview.displayMessage("Illeagal move select cards to move again");
@@ -347,7 +340,6 @@ class Solpres {
                 }
             }
             
-            alert("row= "+mrow);
                 if(row=="row1"){
                     for(var i=0; i<mrow.length; i++){
                         this.row1.push(mrow[i]);
@@ -379,7 +371,6 @@ class Solpres {
                     }
                 }
             
-            ///*
                 if(this.actionRow=="row1"){
                     this.row1.splice(this.actionPos);
                 }
@@ -399,12 +390,35 @@ class Solpres {
                 else if(this.actionRow=="row6"){
                     this.row6.splice(this.actionPos);
                 }
-                //*/
                 
             this.checkFlips();
             this.actionRow=null;
             this.placing=false;
-            this.removeCards();
+            if(this.row1.length>=13){
+                alert("Row 1 has a length greater than 13");
+                this.removeCards(this.row1);
+            }
+            if(this.row2.length>=13){
+                this.removeCards(this.row2);
+            }
+            
+            if(this.row3.length>=13){
+                this.removeCards(this.row3);
+            }
+            
+            if(this.row4.length>=13){
+                this.removeCards(this.row4);
+            }
+            
+            if(this.row5.length>=13){
+                this.removeCards(this.row5);
+            }
+            
+            if(this.row6.length>=13){
+                this.removeCards(this.row6);
+            }
+            
+            
             if(this.checkWin()){
                 this.solview.displayMessage("Congradulations you win!!!")
             }
@@ -424,6 +438,7 @@ class Solpres {
      
     return;
  }
+    
     
     dealNewCards(){
         this.row1.push(this.deck.dealACard());
@@ -469,172 +484,46 @@ class Solpres {
         return null;
     }
     
-    removeCards(){
+    removeCards(row){
+        //alert("checking for cards to remove for the following row" +row);
         let c1=-1;
-        let c2=-1;
         var times=0;
         var pos=-1;
-        for(var i=0; i<this.row1.length; i++){
-            c2=this.row1[i].getSValue();
-            if(c2==13){
-               if(c1 == -1){
-                    c1=c2;
-                    times++;
-                    pos=i;
+        for(var i=0; i<row.length; i++){
+            if(row[i].flipped){
+                continue;
+            }
+            if(row[i].getSValue()==13){
+                c1 = 12;
+                pos=i;
+                let rem=true;
+                i++;
+                while(i<row.length && rem){
+                    //alert("c1= "+c1);
+                    //c1--;
+                    //alert("current card"+row[i].getValue());
+                    if(+row[i].getSValue() == +c1){
+                        //alert("found the next card");
+                        c1--;
+                        i++
+                    }
+                    else{
+                        rem=false;
+                        break;
+                    }
+                    if(c1 == 0){
+                        row.splice(pos, 13);
+                        let c=document.getElementById("Vicdecks");
+                        let image=document.createElement("img");
+                        image.src ="./Images/kh.png";
+	                    image.title="";
+                        image.id="empty";
+	                    image.class="card positionable";
+                        image.style="z-index:" + i +";";
+                        c.appendChild(image);
+                        return;
+                    }
                 }
-                else{
-                    if(c2== +c1 - +1){
-                        c1=c2;
-                        times++;
-                    }
-                    else{
-                        break;
-                    }
-                } 
-            }
-            if(times == 13){
-                this.row1.splice(pos, 13);
-                break;
-            }
-        }
-        c1=-1;
-        c2=-1;
-        times=0;
-        pos=-1;
-        
-        for(var i=0; i<this.row2.length; i++){
-            c2=this.row2[i].getSValue();
-            if(c2==13){
-               if(c1 == -1){
-                    c1=c2;
-                    times++;
-                    pos=i;
-               }
-                else{
-                    if(c2== +c1 - +1){
-                        c1=c2;
-                        times++;
-                    }
-                    else{
-                        break;
-                    }
-                } 
-            }
-            if(times == 13){
-                this.row2.splice(pos, 13);
-                break;
-            }
-            
-        }
-        c1=-1;
-        c2=-1;
-        times=0;
-        pos=-1;
-        
-        for(var i=0; i<this.row3.length; i++){
-            c2=this.row3[i].getSValue();
-            if(c2==13){
-               if(c1 == -1){
-                    c1=c2;
-                    times++;
-                    pos=i;
-                }
-                else{
-                    if(c2== +c1 - +1){
-                        c1=c2;
-                        times++;
-                    }
-                    else{
-                        break;
-                    }
-                } 
-            }
-            if(times == 13){
-                this.row3.splice(pos, 13);
-                break;
-            }
-        }
-        c1=-1;
-        c2=-1;
-        times=0;
-        pos=-1;
-        
-        for(var i=0; i<this.row4.length; i++){
-            c2=this.row4[i].getSValue();
-            if(c2==13){
-               if(c1 == -1){
-                    c1=c2;
-                    times++;
-                    pos=i;
-                }
-                else{
-                    if(c2== +c1 - +1){
-                        c1=c2;
-                        times++;
-                    }
-                    else{
-                        break;
-                    }
-                } 
-            }
-            if(times == 13){
-                this.row4.splice(pos, 13);
-                break;
-            }
-        }
-        c1=-1;
-        c2=-1;
-        times=0;
-        pos=-1;
-        
-        for(var i=0; i<this.row5.length; i++){
-            c2=this.row5[i].getSValue();
-            if(c2==13){
-               if(c1 == -1){
-                    c1=c2;
-                    times++;
-                    pos=i;
-                }
-                else{
-                    if(c2== +c1 - +1){
-                        c1=c2;
-                        times++;
-                    }
-                    else{
-                        break;
-                    }
-                } 
-            }
-            if(times == 13){
-                this.row5.splice(pos, 13);
-                break;
-            }
-        }
-        c1=-1;c2=-1;
-        times=0;
-        pos=-1;
-        
-        for(var i=0; i<this.row6.length; i++){
-            c2=this.row6[i].getSValue();
-            if(c2==13){
-               if(c1 == -1){
-                    c1=c2;
-                    times++;
-                    pos=i;
-                }
-                else{
-                    if(c2== +c1 - +1){
-                        c1=c2;
-                        times++;
-                    }
-                    else{
-                        break;
-                    }
-                } 
-            }
-            if(times == 13){
-                this.row6.splice(pos, 13);
-                break;
             }
         }
         
