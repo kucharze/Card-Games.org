@@ -172,7 +172,7 @@ div.statusBox {
     <br><br>
     <input type="button" value="Reset the game" style="font-size: 18px" onclick="crazyReset()">
     <br><br>
-    <input type="button" value="Online Mode" style="font-size: 18px">
+    <input type="button" value="Online Mode" id="8on" style="font-size: 18px" disabled="true" onclick="window.open('ProvidedCode/Client/Crazy8.html','_blank','resizable=yes')">
     <br><br>
     
     <button style="font-size: 20px" class="accordion">View Instructions</button>
@@ -467,6 +467,7 @@ To beat the dealer the player must first not go over 21 and either outscore the 
         <div id="row6" style="position: absolute; left: 530px"><img src="Images/cardback.jpg"></div>
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <div id="soldecks"><img src="Images/cardback.png"><img src="Images/cardback.png"><img src="Images/cardback.png"><img src="Images/cardback.png"></div>
+        <div id="Vicdecks"><img src="Images/cardback.png"></div>
         <br>
         <input type="button" value="Reset the game" style="font-size: 18px" onclick="solreset()">
         <br><br>
@@ -581,6 +582,7 @@ function openTab(evt, cityName) {//Code for opening tabs
 }
 </script>
         <script>
+            let sign = false;
         function insert(){
             var user = document.getElementById("user").value;
             var pass = document.getElementById("pass").value;
@@ -591,6 +593,8 @@ function openTab(evt, cityName) {//Code for opening tabs
                 document.getElementById("pass").value=" ";
                 return;
             }
+             sign=true;
+            document.getElementById("8on").disabled=false;
             table.innerHTML=table.innerHTML+"Username:"+user+" Password:"+pass;
             document.getElementById("user").value=" ";
             document.getElementById("pass").value=" ";
@@ -599,11 +603,7 @@ function openTab(evt, cityName) {//Code for opening tabs
         function suggest(){
             var user = document.getElementById("sug").value;
             var table=document.getElementById("suggestion");
-           // if(pass.length<8){
-                //alert("Password must be at least 8 characters long");
                 document.getElementById("sug").value=" ";
-                //return;
-            //}
             table.innerHTML=table.innerHTML+user+"<br>";
             document.getElementById("sug").value=" ";
            // document.getElementById("pass").value=" ";
