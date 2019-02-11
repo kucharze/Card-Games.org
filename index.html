@@ -504,10 +504,9 @@ To beat the dealer the player must first not go over 21 and either outscore the 
     <div id="yourcard"><img src="Images/cardback.png" alt="playerdeck"></div>
     <div id="yourwar"><img src="Images/cardback.png" alt="playerwarcard"></div>
     
-    <input type="button" onclick="deal()" value="Play a Round">
-    <br>
-    <label id="warreset">Click here to reset the game</label>
-    <input type="button" value="Reset the game">
+    <input type="button" style="font-size: 18px" onclick="deal()" value="Play a Round">
+    <br><br><br>
+    <input type="button" style="font-size: 18px" value="Reset the game">
     <button style="font-size: 20px" class="accordion">View Instructions</button>
         <div class="panel">
             <h2>War</h2>
@@ -530,6 +529,10 @@ If the face-up cards are again equal then the battle repeats with another set of
         
         function deal(){
             warpres.dealCards();
+        }
+        
+        function warReset(){
+            
         }
     </script>
     
