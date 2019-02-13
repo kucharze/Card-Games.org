@@ -1,31 +1,30 @@
-// HTTP Module for Creating Server and Serving Static Files Using Node.js
-// Static Files: HTML, CSS, JS, Images
-// Get Complete Source Code from Pabbly.com
 
-var http = require('http');
-var fs = require('fs');
+const SocketServer = require('ws').Server;
+var express = require('express');
 var path = require('path');
+var connectedUsers = [];
+//init Express
+var app = express();
+//init Express Router
+var router = express.Router();
+var port = process.env.PORT || 8080;
+app.use(express.static(path.join(__dirname,'/public')));
 
-http.createServer(function(req, res){
-    if(req.url === "/"){
-        fs.readFile("index.html", "UTF-8", function(err, html){
-            res.writeHead(200, {"Content-Type": "text/html"});
-            res.end(html);
-        });
-    }else if(req.url.match("\.css$")){
-        var cssPath = path.join(__dirname, '/', req.url);
-        var fileStream = fs.createReadStream(cssPath, "UTF-8");
-        res.writeHead(200, {"Content-Type": "text/css"});
-        fileStream.pipe(res);
-
-    }else if(req.url.match("\.png$")){
-        var imagePath = path.join(__dirname, '/', req.url);
-        var fileStream = fs.createReadStream(imagePath);
-        res.writeHead(200, {"Content-Type": "image/png"});
-        fileStream.pipe(res);
-    }else{
-        res.writeHead(404, {"Content-Type": "text/html"});
-        res.end("No Page Found");
-    }
-
-}).listen(3000);
+//return static page with websocket client
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname + '/index.html'));
+});
+var server = app.listen(port, function () {
+    console.log('node.js static server listening on port: ' + port + ", with websockets listener")
+})
+const wss = new SocketServer({ server });
+//init Websocket ws and handle incoming connect requests
+wss.on('connection', function connection(ws) {
+    console.log("connection ...");
+    //on connect message
+    ws.on('message', function incoming(message) {
+        console.log('received: %s', message);
+        connectedUsers.push(message);
+    });
+    ws.send('message from server at: ' + new Date());
+});
